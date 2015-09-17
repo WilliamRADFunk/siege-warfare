@@ -1,0 +1,189 @@
+<html>
+<head>
+	<script src="js/three.js"></script>
+	<script src="js/physi.js"></script>
+	<script src="js/threex.keyboardstate.js"></script>
+</head>
+<body>
+
+<script>
+	var camera, scene, renderer;
+
+	var groundplane;
+	var cannon;
+	var ball;
+	
+	var keyboard;
+	
+	var balllaunched = false;
+	
+	Physijs.scripts.worker = 'js/physijs_worker.js';
+    Physijs.scripts.ammo = 'ammo.js';
+	
+	function GenerateGroundPlane()
+	{
+		var texture = THREE.ImageUtils.loadTexture('assets/groundterrain.jpg');
+		var planeMaterial = new Physijs.createMaterial(new THREE.MeshLambertMaterial({map:texture}), .4, .8 );
+		var planeGeometry = new THREE.PlaneGeometry( 200, 200, 6 );
+		plane = new Physijs.BoxMesh( planeGeometry, planeMaterial, 0 );
+		scene.add( plane );
+	}
+	
+	function GenerateCannon()
+	{
+		var cylinderGeometry = new THREE.CylinderGeometry( 2, 2, 10 );
+		var cylinderMaterial = new THREE.MeshLambertMaterial({color:'lightgray'});
+		var can = new THREE.Mesh( cylinderGeometry, cylinderMaterial );
+		can.position.y = -5;
+		
+		cannon = new THREE.Object3D();
+		cannon.add( can );
+		
+		cannon.rotation.z = Math.PI / 2;
+		cannon.position.x -= 84;
+		cannon.position.z += 20;
+		scene.add( cannon );
+	}
+	
+	function GenerateCannonBall()
+	{
+		var texture = THREE.ImageUtils.loadTexture('images/balltexture.jpg');
+		var ballGeometry = new THREE.SphereGeometry( 3 );
+		var ballMaterial = Physijs.createMaterial( new THREE.MeshLambertMaterial({map:texture}), .95, .95 );
+		ball = new Physijs.SphereMesh( ballGeometry, ballMaterial );
+		
+		ball.position.x = cannon.position.x + 10;
+		ball.position.y = cannon.position.y;
+		ball.position.z = cannon.position.z;
+	}
+	
+	var targetlist;
+	function GenerateTarget()
+	{
+		targetlist = [];
+		
+		for( var i=0; i<4; i++ )
+		{
+			var geo = new THREE.BoxGeometry( 4, 4, 12 );
+			var mat = Physijs.createMaterial( new THREE.MeshLambertMaterial({color:'blue'}), .95, .95 );
+			var msh = new Physijs.BoxMesh( geo, mat );
+			switch( i )
+			{
+				case 0: msh.position.x = 80; break;
+				case 1: msh.position.x = 85; msh.position.y = 5; break;
+				case 2: msh.position.x = 90; break;
+				case 3: msh.position.x = 85; msh.position.y = -5; break;
+			}
+			msh.position.z = 6;
+			targetlist.push( msh );
+			scene.add( msh );
+		}
+		
+	}
+	
+	function init()
+	{
+		keyboard = new THREEx.KeyboardState();
+	
+		scene = new Physijs.Scene();
+		scene.setGravity(new THREE.Vector3( 0, 0, -30 ));
+		scene.addEventListener('update', function() 
+		{
+			scene.simulate();
+		});
+		
+		camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 1000 );
+		camera.position.x = 0;
+		camera.position.y = -100;
+		camera.position.z = 250;
+		camera.lookAt( scene.position );
+		
+		renderer = new THREE.WebGLRenderer();
+		renderer.setClearColor( 0x000000, 1.0 );
+		renderer.setSize( window.innerWidth, window.innerHeight );
+		renderer.shadowMapEnabled = true;
+
+		// 1. Drop in ground plane
+		GenerateGroundPlane();
+
+		// Generate cannon
+		GenerateCannon();
+		
+		// Generate cannon ball
+		GenerateCannonBall();
+		
+		// Generate target
+		GenerateTarget();
+
+        var spotLight = new THREE.SpotLight( 0xffffff );
+        spotLight.position.set( 0, 0, 200 );
+        spotLight.shadowCameraNear = 10;
+        spotLight.shadowCameraFar = 100;
+        spotLight.castShadow = true;
+		spotLight.intensity = 3;
+        scene.add(spotLight);
+		
+		scene.simulate();
+		
+		document.body.appendChild( renderer.domElement );		
+		render();
+	}
+
+	function render()
+	{
+		if( keyboard.pressed("left") )
+		{
+			cannon.rotation.z += 0.01;
+		}
+		else if( keyboard.pressed("right") )
+		{
+			cannon.rotation.z -= 0.01;
+		}
+		else if( keyboard.pressed("up") )
+		{
+			cannon.rotation.y -= 0.02;
+			if( cannon.rotation.y < -( Math.PI / 3 ) )
+			{
+				cannon.rotation.y = -( Math.PI / 3 );
+			}
+		}	
+		else if( keyboard.pressed("down") )
+		{
+			cannon.rotation.y += 0.02;
+			if( cannon.rotation.y > 0 )
+			{
+				cannon.rotation.y = 0;
+			}
+		}
+		else if( !balllaunched && keyboard.pressed("tab") )
+		{
+			balllaunched = true;
+			scene.add( ball );
+			ball.applyCentralImpulse( new THREE.Vector3( 8000, -( Math.PI / 2 - cannon.rotation.z ) * 4000, -cannon.rotation.y * 10000 ) );
+		}
+		else if( balllaunched && keyboard.pressed("escape") )
+		{
+			balllaunched = false;
+			scene.remove( ball );
+			GenerateCannonBall();
+		}
+		
+		if( balllaunched )
+		{
+			if( ball.position.z < -5 )
+			{
+				balllaunched = false;
+				scene.remove( ball );
+				GenerateCannonBall();
+			}
+		}
+	
+		requestAnimationFrame( render );
+		renderer.render( scene, camera );
+	}
+	
+	window.onload = init;
+
+</script>
+</body>
+</html>

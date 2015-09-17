@@ -75,14 +75,14 @@ THREEx.KeyboardState.prototype.destroy	= function()
 
 THREEx.KeyboardState.MODIFIERS	= ['shift', 'ctrl', 'alt', 'meta'];
 THREEx.KeyboardState.ALIAS	= {
-	'left'		: 76,
-	'up'		: 85,
-	'right'		: 82,
-	'down'		: 68,
+	'left'		: 37,
+	'up'		: 38,
+	'right'		: 39,
+	'down'		: 40,
 	'space'		: 32,
 	'pageup'	: 33,
 	'pagedown'	: 34,
-	'tab'		: 75,
+	'tab'		: 9,
 	'escape'	: 65
 };
 

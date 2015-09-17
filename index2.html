@@ -45,64 +45,47 @@
 		muzzle.rotation.x = Math.PI / 2;
 
 		var wheelTexture = THREE.ImageUtils.loadTexture('assets/cannon-wheel-rim.png');
-		var wheelGeometry = new THREE.CylinderGeometry(5, 5, 1, 32);
+		var wheelGeometry = new THREE.RingGeometry(4, 5, 32, 32, 0, Math.PI * 2);
 		var wheelMaterial = new THREE.MeshLambertMaterial({map: wheelTexture});
+		wheelMaterial.side = THREE.DoubleSide;
 		var wheel1 = new THREE.Mesh( wheelGeometry, wheelMaterial );
 		wheel1.position.x = 2;
 		wheel1.position.y = -2;
-		wheel1.rotation.z = Math.PI / 2;
+		wheel1.rotation.y = Math.PI / 2;
 		var wheel2 = new THREE.Mesh( wheelGeometry, wheelMaterial );
 		wheel2.position.x = -2;
 		wheel2.position.y = -2;
-		wheel2.rotation.z = Math.PI / 2;
+		wheel2.rotation.y = Math.PI / 2;
+		var wheel3 = new THREE.Mesh( wheelGeometry, wheelMaterial );
+		wheel3.position.x = 2.5;
+		wheel3.position.y = -2;
+		wheel3.rotation.y = Math.PI / 2;
+		var wheel4 = new THREE.Mesh( wheelGeometry, wheelMaterial );
+		wheel4.position.x = -2.5;
+		wheel4.position.y = -2;
+		wheel4.rotation.y = Math.PI / 2;
 
-		var wheelGaps1Geometry = new THREE.CircleGeometry( 4, 32 );
-		var wheelGaps1Material = new THREE.MeshLambertMaterial({color: 0x444444});
-		wheelGaps1Material.side = THREE.DoubleSide;
-		var wheelGaps1 = new THREE.Mesh( wheelGaps1Geometry, wheelGaps1Material );
-		wheelGaps1.position.x = 2.55;
-		wheelGaps1.position.y = -2;
-		wheelGaps1.rotation.y = Math.PI / 2;
+		var wheelCylinder1Geometry = new THREE.CylinderGeometry( 5, 5, 0.5, 32, 32, true );
+		var wheelCylinder1 = new THREE.Mesh( wheelCylinder1Geometry, wheelMaterial );
+		wheelCylinder1.position.x = 2.25;
+		wheelCylinder1.position.y = -2;
+		wheelCylinder1.rotation.z = Math.PI / 2;
 
-		var wheelGaps2Geometry = new THREE.CircleGeometry( 4, 32 );
-		var wheelGaps2Material = new THREE.MeshLambertMaterial({color: 0x444444});
-		wheelGaps2Material.side = THREE.DoubleSide;
-		var wheelGaps2 = new THREE.Mesh( wheelGaps2Geometry, wheelGaps2Material );
-		wheelGaps2.position.x = -2.55;
-		wheelGaps2.position.y = -2;
-		wheelGaps2.rotation.y = Math.PI / 2;
+		var wheelCylinder2 = new THREE.Mesh( wheelCylinder1Geometry, wheelMaterial );
+		wheelCylinder2.position.x = -2.25;
+		wheelCylinder2.position.y = -2;
+		wheelCylinder2.rotation.z = Math.PI / 2;
 
-		var spokes1_1Geometry = new THREE.PlaneGeometry( 2, 2, 2 );
-		var spokes1_1Material = new THREE.MeshLambertMaterial({map: wheelTexture});
-		spokes1_1Material.side = THREE.DoubleSide;
-		var spokes1_1 = new THREE.Mesh( spokes1_1Geometry, spokes1_1Material );
-		spokes1_1.position.x = 2.6;
-		spokes1_1.position.y = -2;
-		spokes1_1.rotation.y = Math.PI / 2;
+		var wheelCylinder2Geometry = new THREE.CylinderGeometry( 4, 5, 0.5, 32, 32, true );
+		var wheelCylinder1_2 = new THREE.Mesh( wheelCylinder2Geometry, wheelMaterial );
+		wheelCylinder1_2.position.x = 2.25;
+		wheelCylinder1_2.position.y = -2;
+		wheelCylinder1_2.rotation.z = Math.PI / 2;
 
-		var spokes2_1Geometry = new THREE.CircleGeometry( 2, 2, 2 );
-		var spokes2_1Material = new THREE.MeshLambertMaterial({map: wheelTexture});
-		spokes2_1Material.side = THREE.DoubleSide;
-		var spokes2_1 = new THREE.Mesh( spokes2_1Geometry, spokes2_1Material );
-		spokes2_1.position.x = -2.6;
-		spokes2_1.position.y = -2;
-		spokes2_1.rotation.y = Math.PI / 2;
-
-		var wheelGaps1_2Geometry = new THREE.CircleGeometry( 1, 32 );
-		var wheelGaps1_2Material = new THREE.MeshLambertMaterial({map: wheelTexture});
-		wheelGaps1_2Material.side = THREE.DoubleSide;
-		var wheelGaps1_2 = new THREE.Mesh( wheelGaps1_2Geometry, wheelGaps1_2Material );
-		wheelGaps1_2.position.x = 2.65;
-		wheelGaps1_2.position.y = -2;
-		wheelGaps1_2.rotation.y = Math.PI / 2;
-
-		var wheelGaps2_2Geometry = new THREE.CircleGeometry( 1, 32 );
-		var wheelGaps2_2Material = new THREE.MeshLambertMaterial({map: wheelTexture});
-		wheelGaps2_2Material.side = THREE.DoubleSide;
-		var wheelGaps2_2 = new THREE.Mesh( wheelGaps2_2Geometry, wheelGaps2_2Material );
-		wheelGaps2_2.position.x = -2.65;
-		wheelGaps2_2.position.y = -2;
-		wheelGaps2_2.rotation.y = Math.PI / 2;
+		var wheelCylinder2_2 = new THREE.Mesh( wheelCylinder2Geometry, wheelMaterial );
+		wheelCylinder2_2.position.x = -2.25;
+		wheelCylinder2_2.position.y = -2;
+		wheelCylinder2_2.rotation.z = Math.PI / 2;
 		
 		cannon = new THREE.Object3D();
 		cannon.add( can );
@@ -110,10 +93,12 @@
 		cannon.add( muzzle );
 		cannon.add( wheel1 );
 		cannon.add( wheel2 );
-		cannon.add( wheelGaps1 );
-		cannon.add( wheelGaps2 );
-		cannon.add( wheelGaps1_2 );
-		cannon.add( wheelGaps2_2 );
+		cannon.add( wheel3 );
+		cannon.add( wheel4 );
+		cannon.add( wheelCylinder1 );
+		cannon.add( wheelCylinder2 );
+		cannon.add( wheelCylinder1_2 );
+		cannon.add( wheelCylinder2_2 );
 		
 		cannon.rotation.z = Math.PI / 2;
 		//cannon.position.x -= 144;

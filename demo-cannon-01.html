@@ -17,13 +17,8 @@
 <script>
 	var camera, scene, renderer;
 	var orbControls;
-	var groundplane;
 	var cannon;
-	var ball;
-	
 	var keyboard;
-	
-	var balllaunched = false;
 	
 	function GenerateCannon()
 	{
@@ -87,6 +82,15 @@
 		wheelCylinder2_2.position.y = -2;
 		wheelCylinder2_2.rotation.z = Math.PI / 2;
 		
+
+		var platformGeometry = new THREE.CylinderGeometry( 15, 15, 2.5, 32, 32, false );
+		var platformMaterial = new THREE.MeshBasicMaterial({color: 'lightgrey'});
+		var platform = new THREE.Mesh( platformGeometry, platformMaterial );
+		platform.position.y = -2;
+		platform.position.z = -6.5;
+		platform.rotation.x = Math.PI / 2;
+		//var edges = new THREE.EdgesHelper( platform, 0x5555555 );
+
 		cannon = new THREE.Object3D();
 		cannon.add( can );
 		cannon.add( firingPin );
@@ -99,6 +103,9 @@
 		cannon.add( wheelCylinder2 );
 		cannon.add( wheelCylinder1_2 );
 		cannon.add( wheelCylinder2_2 );
+
+		cannon.add( platform );
+		//cannon.add( edges );
 		
 		cannon.rotation.z = Math.PI / 2;
 		//cannon.position.x -= 144;
@@ -114,10 +121,10 @@
 		WIDTH = (window.innerWidth) * 0.97;
 		HEIGHT = (window.innerHeight) * 0.97;
 		
-		camera = new THREE.PerspectiveCamera( 45, WIDTH / HEIGHT, 0.1, 1000 );
+		camera = new THREE.PerspectiveCamera( 75, WIDTH / HEIGHT, 0.1, 1000 );
 		camera.position.x = 0;
-		camera.position.y = 0;
-		camera.position.z = 30;
+		camera.position.y = -25;
+		camera.position.z = 15;
 		camera.lookAt( scene.position );
 		
 		renderer = new THREE.WebGLRenderer();
@@ -176,54 +183,8 @@
 	}
 
 	function render()
-	{
-		if( keyboard.pressed("left") )
-		{
-			cannon.rotation.z += 0.01;
-		}
-		else if( keyboard.pressed("right") )
-		{
-			cannon.rotation.z -= 0.01;
-		}
-		else if( keyboard.pressed("up") )
-		{
-			cannon.rotation.y -= 0.02;
-			if( cannon.rotation.y < -( Math.PI / 5 ) )
-			{
-				cannon.rotation.y = -( Math.PI / 5 );
-			}
-		}	
-		else if( keyboard.pressed("down") )
-		{
-			cannon.rotation.y += 0.02;
-			if( cannon.rotation.y > 0 )
-			{
-				cannon.rotation.y = 0;
-			}
-		}
-		else if( !balllaunched && keyboard.pressed("tab") )
-		{
-			balllaunched = true;
-			scene.add( ball );
-			ball.applyCentralImpulse( new THREE.Vector3( 8000, -( Math.PI / 2 - cannon.rotation.z ) * 4000, -cannon.rotation.y * 10000 ) );
-		}
-		else if( balllaunched && keyboard.pressed("escape") )
-		{
-			balllaunched = false;
-			scene.remove( ball );
-			GenerateCannonBall();
-		}
-		
-		if( balllaunched )
-		{
-			if( ball.position.z < -5 )
-			{
-				balllaunched = false;
-				scene.remove( ball );
-				GenerateCannonBall();
-			}
-		}
-	
+	{	
+		cannon.rotation.z += 0.01;
 		requestAnimationFrame( render );
 		renderer.render( scene, camera );
 	}

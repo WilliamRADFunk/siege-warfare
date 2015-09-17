@@ -1,6 +1,6 @@
 <html>
 <head>
-	<!-- Cannon barrel texture provided by: http://www.flickriver.com/photos/steffen-larsen/tags/textures/ -->
+	<!-- Cannon barrel texture provided by: http://shortformvideo.co.uk/product/texturepak1/ -->
 	<title>Siege Warfare</title>
 	<!-- WebGL wrapper library -->
 	<script src="js/three.js"></script>
@@ -23,7 +23,7 @@
 	
 	function GenerateCannon()
 	{
-		var cylinderTexture = THREE.ImageUtils.loadTexture('assets/barrel-1.jpg');
+		var cylinderTexture = THREE.ImageUtils.loadTexture('assets/barrel-2.png');
 		var cylinderGeometry = new THREE.CylinderGeometry( 2, 2, 20, 32 );
 		var cylinderMaterial = new THREE.MeshLambertMaterial({map: cylinderTexture});
 		var can = new THREE.Mesh( cylinderGeometry, cylinderMaterial );
@@ -35,7 +35,7 @@
 		loader.position.y = 6;
 
 		var firingPinGeometry = new THREE.CylinderGeometry( 0.1, 0.1, 1, 32 );
-		var firingPinMaterial = new THREE.MeshLambertMaterial({color: 0xFFFFFF});
+		var firingPinMaterial = new THREE.MeshLambertMaterial({color: 0x000000});
 		var firingPin = new THREE.Mesh( firingPinGeometry, firingPinMaterial );
 		firingPin.position.y = 4;
 		firingPin.position.z = 2.5;

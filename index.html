@@ -20,27 +20,12 @@
 	<script src="js/data.js"></script>
 	<!-- All things related to cannons -->
 	<script src="js/cannon.js"></script>
+	<!-- All things related to terrain -->
+	<script src="js/terrain.js"></script>
 </head>
 <body>
 
 <script>	
-	function GenerateGroundPlane()
-	{
-		var groundTexture = THREE.ImageUtils.loadTexture('assets/groundterrain2.png');
-		var groundMaterial = new Physijs.createMaterial(new THREE.MeshLambertMaterial({map:groundTexture}), .4, .8 );
-		var groundGeometry = new THREE.PlaneGeometry( 400, 400, 6 );
-		ground = new Physijs.BoxMesh( groundGeometry, groundMaterial, 0 );
-		scene.add( ground );
-
-		var undergroundTexture = THREE.ImageUtils.loadTexture('assets/undrgrd.png');
-		var undergroundMaterial = new THREE.MeshLambertMaterial({map: undergroundTexture});
-		var undergroundGeometry = new THREE.BoxGeometry(400, 400, 100);
-		var underground = new THREE.Mesh(undergroundGeometry, undergroundMaterial);
-		scene.add( underground );
-		underground.position.z -= 51;
-
-	}
-	
 	var targetlist;
 	function GenerateTarget()
 	{
@@ -91,14 +76,13 @@
 		renderer.shadowMapEnabled = true;
 
 		// 1. Drop in ground plane
-		GenerateGroundPlane();
+		var terrain = GenerateTerrain();
+		scene.add( terrain[0] );
+		scene.add( terrain[1] );
 
 		// Generate cannon
 		cannon = GenerateCannon();
 		scene.add( cannon );
-		
-		// Generate cannon ball
-		GenerateCannonBall();
 		
 		// Generate target
 		GenerateTarget();
@@ -147,14 +131,17 @@
 		else if( !balllaunched && keyboard.pressed("space") )
 		{
 			balllaunched = true;
+			// Generate cannon ball
+			ball = GenerateCannonBall(0);
 			scene.add( ball );
-			ball.applyCentralImpulse( new THREE.Vector3( 8000, -( Math.PI / 2 - cannon.rotation.z ) * 4000, -cannon.rotation.y * 10000 ) );
+			ball.applyCentralImpulse( new THREE.Vector3( 10000, -( Math.PI / 2 - cannon.rotation.z ) * 4000, -cannon.rotation.y * 10000 ) );
 		}
-		else if( balllaunched && keyboard.pressed("escape") )
+		else if( balllaunched && keyboard.pressed("enter") )
 		{
 			balllaunched = false;
 			scene.remove( ball );
-			GenerateCannonBall();
+			// Generate cannon ball
+			ball = GenerateCannonBall(0);
 		}
 		
 		if( balllaunched )
@@ -163,7 +150,8 @@
 			{
 				balllaunched = false;
 				scene.remove( ball );
-				GenerateCannonBall();
+				// Generate cannon ball
+				ball = GenerateCannonBall(0);
 			}
 		}
 	

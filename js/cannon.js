@@ -170,13 +170,24 @@ function GenerateCannon()
 	return cannon;
 }
 
-function GenerateCannonBall()
+function GenerateCannonBall(caliber)
 {
-	var ballGeometry = new THREE.SphereGeometry( 3 );
-	var ballMaterial = Physijs.createMaterial( new THREE.MeshLambertMaterial({color: 'white'}), .95, .95 );
+	var ballTexture;
+	var ballGeometry;
+	var ballMaterial;
+
+	if( caliber == 0 )
+	{
+		ballTexture = THREE.ImageUtils.loadTexture('assets/cannonball-1.png');
+		ballGeometry = new THREE.SphereGeometry( 3 );
+		ballMaterial = Physijs.createMaterial( new THREE.MeshLambertMaterial({map: ballTexture}), .95, .95 );
+	}
+	
 	ball = new Physijs.SphereMesh( ballGeometry, ballMaterial );
 	
 	ball.position.x = cannon.position.x + 10;
 	ball.position.y = cannon.position.y;
 	ball.position.z = cannon.position.z;
+
+	return ball;
 }

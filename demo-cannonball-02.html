@@ -1,6 +1,6 @@
 <html>
 <head>
-	<!-- Cannonball texture provided by: http://imagestack.co/218445021-shop-textures.html -->
+	<!-- Cannonball texture provided by: http://www.dreamstime.com/stock-images-quartz-porphyry-rhyolite-estonia-image25775514 -->
 	<title>Siege Warfare</title>
 	<!-- WebGL wrapper library -->
 	<script src="js/three.js"></script>
@@ -20,7 +20,7 @@
 	
 	function GenerateCannonBall()
 	{
-		var ballTexture = THREE.ImageUtils.loadTexture('assets/cannonball-1.jpg');
+		var ballTexture = THREE.ImageUtils.loadTexture('assets/cannonball-2.jpg');
 		var ballGeometry = new THREE.SphereGeometry( 3, 32, 32, 0, Math.PI * 2, 0, Math.PI * 2 );
 		var ballMaterial = Physijs.createMaterial( new THREE.MeshLambertMaterial({map: ballTexture}), .95, .95 );
 		

@@ -2,7 +2,7 @@ function GenerateTerrain()
 {
 	var terrain = [];
 
-	var groundTexture = THREE.ImageUtils.loadTexture('assets/groundterrain2.png');
+	var groundTexture = THREE.ImageUtils.loadTexture('assets/groundterrain3.jpg');
 	var groundMaterial = new Physijs.createMaterial(new THREE.MeshLambertMaterial({map:groundTexture}), .4, .8 );
 	var groundGeometry = new THREE.PlaneGeometry( 400, 400, 6 );
 	ground = new Physijs.BoxMesh( groundGeometry, groundMaterial, 0 );

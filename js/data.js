@@ -5,6 +5,8 @@ var orbControls;
 var groundplane;
 var cannon;
 var ball;
+var caliber = 0;
+var updateCounter = 0;
 var keyboard;
 var balllaunched = false;
 

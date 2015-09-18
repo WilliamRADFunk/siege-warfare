@@ -178,16 +178,28 @@ function GenerateCannonBall(caliber)
 
 	if( caliber == 0 )
 	{
-		ballTexture = THREE.ImageUtils.loadTexture('assets/cannonball-1.png');
-		ballGeometry = new THREE.SphereGeometry( 3 );
+		ballTexture = THREE.ImageUtils.loadTexture('assets/cannonball-1.jpg');
+		ballGeometry = new THREE.SphereGeometry( 3, 32, 32, 0, Math.PI * 2, 0, Math.PI * 2 );
+		ballMaterial = Physijs.createMaterial( new THREE.MeshLambertMaterial({map: ballTexture}), .95, .95 );
+	}
+	else if( caliber == 1 )
+	{
+		ballTexture = THREE.ImageUtils.loadTexture('assets/cannonball-2.jpg');
+		ballGeometry = new THREE.SphereGeometry( 3, 32, 32, 0, Math.PI * 2, 0, Math.PI * 2 );
+		ballMaterial = Physijs.createMaterial( new THREE.MeshLambertMaterial({map: ballTexture}), .95, .95 );
+	}
+	else
+	{
+		ballTexture = THREE.ImageUtils.loadTexture('assets/cannonball-3.jpg');
+		ballGeometry = new THREE.SphereGeometry( 3, 32, 32, 0, Math.PI * 2, 0, Math.PI * 2 );
 		ballMaterial = Physijs.createMaterial( new THREE.MeshLambertMaterial({map: ballTexture}), .95, .95 );
 	}
 	
 	ball = new Physijs.SphereMesh( ballGeometry, ballMaterial );
 	
-	ball.position.x = cannon.position.x + 10;
+	ball.position.x = cannon.position.x + 20;
 	ball.position.y = cannon.position.y;
-	ball.position.z = cannon.position.z;
+	ball.position.z = cannon.position.z + 2;
 
 	return ball;
 }

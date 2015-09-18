@@ -1,6 +1,7 @@
 <html>
 <head>
-	<!-- Cannonball texture provided by: http://imagestack.co/218445021-shop-textures.html
+	<!-- Cannonball texture provided by:
+			http://videohive.net/item/abstract-red-light-hd-loop/154861
 		 Felt texture provided by:
 			http://www.sharecg.com/v/469/browse/6/texture/felt-01
 		 Pedestal texture provided by:
@@ -25,7 +26,7 @@
 	
 	function GenerateCannonBall()
 	{
-		var ballTexture = THREE.ImageUtils.loadTexture('assets/cannonball-1.jpg');
+		var ballTexture = THREE.ImageUtils.loadTexture('assets/cannonball-3.jpg');
 		var ballGeometry = new THREE.SphereGeometry( 3, 32, 32, 0, Math.PI * 2, 0, Math.PI * 2 );
 		var ballMaterial = Physijs.createMaterial( new THREE.MeshLambertMaterial({map: ballTexture}), .95, .95 );
 		

@@ -135,7 +135,7 @@
 		{
 			balllaunched = true;
 			// Generate cannon ball
-			ball = GenerateCannonBall(0);
+			ball = GenerateCannonBall(2);
 			scene.add( ball );
 			ball.applyCentralImpulse( new THREE.Vector3( 10000, -( Math.PI / 2 - cannon.rotation.z ) * 4000, -cannon.rotation.y * 10000 ) );
 		}
@@ -144,7 +144,7 @@
 			balllaunched = false;
 			scene.remove( ball );
 			// Generate cannon ball
-			ball = GenerateCannonBall(0);
+			ball = GenerateCannonBall(2);
 		}
 		
 		if( balllaunched )
@@ -154,7 +154,7 @@
 				balllaunched = false;
 				scene.remove( ball );
 				// Generate cannon ball
-				ball = GenerateCannonBall(0);
+				ball = GenerateCannonBall(2);
 			}
 		}
 	

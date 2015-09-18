@@ -1,6 +1,11 @@
 <html>
 <head>
-	<!-- Cannonball texture provided by: http://www.dreamstime.com/stock-images-quartz-porphyry-rhyolite-estonia-image25775514 -->
+	<!-- Cannonball texture provided by: http://www.dreamstime.com/stock-images-quartz-porphyry-rhyolite-estonia-image25775514
+		 Felt texture provided by:
+			http://www.sharecg.com/v/469/browse/6/texture/felt-01
+		 Pedestal texture provided by:
+			http://shortformvideo.co.uk/product/texturepak1/
+	-->
 	<title>Siege Warfare</title>
 	<!-- WebGL wrapper library -->
 	<script src="js/three.js"></script>
@@ -37,7 +42,7 @@
 		pedestal.position.z = 0;
 		pedestal.rotation.x = Math.PI / 2;
 
-		var platformTexture = THREE.ImageUtils.loadTexture('assets/felt-1.jpg');
+		var platformTexture = THREE.ImageUtils.loadTexture('assets/barrel-2.png');
 		var platformGeometry = new THREE.CylinderGeometry( 15, 15, 2.5, 64, 64, false );
 		var platformMaterial = new THREE.MeshBasicMaterial({map: platformTexture});
 		var platform = new THREE.Mesh( platformGeometry, platformMaterial );
@@ -71,8 +76,9 @@
 		renderer.setSize( WIDTH, HEIGHT );
 		renderer.shadowMapEnabled = true;
 
+		var floorTexture = THREE.ImageUtils.loadTexture('assets/felt-1.jpg');
 		var floorGeometry = new THREE.PlaneGeometry( 1000, 1000, 6 );
-		var floorMaterial = new THREE.MeshBasicMaterial({color: 'red'});
+		var floorMaterial = new THREE.MeshBasicMaterial({map: floorTexture});
 		var floor = new THREE.Mesh( floorGeometry, floorMaterial );
 		floor.position.z = -8;
 		scene.add(floor);

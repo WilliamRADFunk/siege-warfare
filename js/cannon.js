@@ -185,7 +185,6 @@ function GenerateCannonBall(caliber)
 	ball.position.x = cannon.position.x + 20.5;
 	ball.position.y = (cannon.rotation.z - (Math.PI / 2)) * 20;
 	ball.position.z = cannon.position.z + (20 * Math.tan(Math.abs(cannon.rotation.y))) + 2;
-	console.log("ball x-y-z: ", ball.position);
 
 	ballList.push(ball);
 	return ball;

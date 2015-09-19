@@ -9,9 +9,14 @@ function KeyPressed()
 		}
 		if( camera == camera2)
 		{
-			camera.lookAt(new THREE.Vector3(cannon.position.x + 20.5, (cannon.rotation.z - (Math.PI / 2)) * 20, cannon.position.z + (20 * Math.tan(Math.abs(cannon.rotation.y))) + 2));
-			camera.rotation.y = -90 * Math.PI / 180;
-			camera.rotation.z = -90 * Math.PI / 180;
+			camera.position.x = cannon.position.x;
+			camera.position.y = cannon.position.y;
+			camera.position.z = cannon.position.z + 4;
+
+			camera.rotation.x = cannon.rotation.x;
+			camera.rotation.z = -cannon.rotation.z;
+			console.log("x pos: ", camera.position.x, "y rot: ", camera.position.y, "z pos: ", camera.position.z);
+			console.log("x rot: ", camera.rotation.x, "y rot: ", camera.rotation.y, "z rot: ", camera.rotation.z);
 		}
 	}
 	else if( keyboard.pressed("right") )
@@ -23,9 +28,14 @@ function KeyPressed()
 		}
 		if( camera == camera2)
 		{
-			camera.lookAt(new THREE.Vector3(cannon.position.x + 20.5, (cannon.rotation.z - (Math.PI / 2)) * 20, cannon.position.z + (20 * Math.tan(Math.abs(cannon.rotation.y))) + 2));
-			camera.rotation.y = -90 * Math.PI / 180;
-			camera.rotation.z = -90 * Math.PI / 180;
+			camera.position.x = cannon.position.x;
+			camera.position.y = cannon.position.y;
+			camera.position.z = cannon.position.z + 4;
+
+			camera.rotation.x = cannon.rotation.x;
+			camera.rotation.z = -cannon.rotation.z;
+			console.log("x pos: ", camera.position.x, "y rot: ", camera.position.y, "z pos: ", camera.position.z);
+			console.log("x rot: ", camera.rotation.x, "y rot: ", camera.rotation.y, "z rot: ", camera.rotation.z);
 		}
 	}
 	else if( keyboard.pressed("up") )
@@ -35,6 +45,18 @@ function KeyPressed()
 		{
 			cannon.rotation.y = -(29.999 * (Math.PI / 180));
 		}
+		if( camera == camera2)
+		{
+			camera.position.x = cannon.position.x;
+			camera.position.y = cannon.position.y;
+			camera.position.z = cannon.position.z + 4;
+
+			camera.rotation.y -= 0.02;
+			if( camera.rotation.y < -(120 * (Math.PI / 180)) )
+			{
+				camera.rotation.y = -(119.999 * (Math.PI / 180))
+			}
+		}
 	}	
 	else if( keyboard.pressed("down") )
 	{
@@ -42,6 +64,19 @@ function KeyPressed()
 		if( cannon.rotation.y > 0 )
 		{
 			cannon.rotation.y = 0.001;
+		}
+		if( camera == camera2)
+		{
+			camera.position.x = cannon.position.x;
+			camera.position.y = cannon.position.y;
+			camera.position.z = cannon.position.z + 4;
+
+			camera.rotation.y += 0.02;
+			if( camera.rotation.y > -(90 * (Math.PI / 180)) )
+			{
+				camera.rotation.y = -(90.001 * (Math.PI / 180))
+			}
+
 		}
 	}
 	else if( keyboard.pressed("camera-one") )
@@ -51,9 +86,12 @@ function KeyPressed()
 	else if( keyboard.pressed("camera-two") )
 	{
 		camera = camera2
-		camera.lookAt(new THREE.Vector3(cannon.position.x + 20.5, (cannon.rotation.z - (Math.PI / 2)) * 20, cannon.position.z + (20 * Math.tan(Math.abs(cannon.rotation.y))) + 2));
-		camera2.rotation.y = -90 * Math.PI / 180;
-		camera2.rotation.z = -90 * Math.PI / 180;
+
+		camera.position.x = cannon.position.x;
+		camera.position.y = cannon.position.y;
+		camera.position.z = cannon.position.z + 4;
+		camera.lookAt( new THREE.Vector3( 0, 0, 1 ) );
+		camera.rotation.z = -cannon.rotation.z;
 	}
 	else if( keyboard.pressed("camera-three") )
 	{

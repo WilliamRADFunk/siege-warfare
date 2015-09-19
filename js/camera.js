@@ -2,7 +2,7 @@ function GenerateCameras()
 {
 	camera1 = new THREE.PerspectiveCamera( 75, WIDTH / HEIGHT, 0.1, 1000 );
 	camera1.position.x = 0;
-	camera1.position.y = -200;
+	camera1.position.y = -50;
 	camera1.position.z = 100;
 	camera1.lookAt( scene.position );
 

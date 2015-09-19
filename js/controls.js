@@ -63,7 +63,7 @@ function KeyPressed()
 			// Generate cannon ball
 			ball = GenerateCannonBall(caliber);
 			scene.add( ball );
-			ball.applyCentralImpulse( new THREE.Vector3( 250 * ball.mass, -( Math.PI / 2 - cannon.rotation.z ) * 4000, -cannon.rotation.y * 10000 ) );
+			ball.applyCentralImpulse( new THREE.Vector3( 200 * ball.mass, -( Math.PI / 2 - cannon.rotation.z ) * 4000, -cannon.rotation.y * 10000 ) );
 			lastFired = 120;
 		}
 	}

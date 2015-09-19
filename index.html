@@ -81,7 +81,7 @@
 		brickTexture = THREE.ImageUtils.loadTexture('assets/brick-1.jpg');
 
 		// Generate a castle
-		castle = CreateCastle();
+		castle = CreateCastle(castleTemplate1);
 
         var spotLight = new THREE.DirectionalLight( 0xffffff );
         spotLight.position.set( 0, -30, 150 );
@@ -102,18 +102,23 @@
 	{
 		updateCounter++;
 		lastFired--;
+
+		// Keeps the counter from getting too large.
 		if(updateCounter > 6000)
 		{
 			updateCounter = 0;
 		}
 
+		// Listens for a keyboard key press.
 		KeyPressed();
 
-		if(updateCounter % 20 == 0)
+		// Makes sure ammo type change happens once per click.
+		if(updateCounter % 15 == 0)
 		{
 			ballChanged = false;
 		}
 
+		// Removes bricks and cannonballs that are out of bounds.
 		if(updateCounter % 59 == 0)
 		{
 			for( var i = 0; i < castle.length; i++ )
@@ -137,14 +142,13 @@
 			}
 		}
 
-		if(updateCounter % 1200 == 0 && ballList.length > 0)
+		// Removes cannonballs after a reasonable amount of time.
+		if(updateCounter % 1200 == 0 && ballList.length > 1)
 		{
 			console.log("Removing cannonball# ", ballList[0].id);
 			scene.remove(ballList[0]);
 			ballList.splice(0, 1);
 		}
-
-		console.log(cannon.rotation);
 
 		requestAnimationFrame( render );
 		renderer.render( scene, camera );

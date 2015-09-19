@@ -1,14 +1,23 @@
 var camera;
+var camera1;
+var camera2;
+var camera3;
 var scene;
 var renderer;
 var orbControls;
 var groundplane;
 var cannon;
 var ball;
+var ballList = [];
+var castle = [];
 var caliber = 0;
 var updateCounter = 0;
+var lastFired = 0;
+var ballChanged = false;
 var keyboard;
 var balllaunched = false;
 
-Physijs.scripts.worker = 'js/physijs_worker.js';
-Physijs.scripts.ammo = 'ammo.js';
+var brickTexture;
+var ball1Texture;
+var ball2Texture;
+var ball3Texture;

@@ -113,7 +113,7 @@
 		KeyPressed();
 
 		// Makes sure ammo type change happens once per click.
-		if(updateCounter % 15 == 0)
+		if(updateCounter % 30 == 0)
 		{
 			ballChanged = false;
 		}
@@ -143,7 +143,7 @@
 		}
 
 		// Removes cannonballs after a reasonable amount of time.
-		if(updateCounter % 1200 == 0 && ballList.length > 1)
+		if( (updateCounter % 1200 == 0 && ballList.length > 1) || (ballList.length >= 30) )
 		{
 			console.log("Removing cannonball# ", ballList[0].id);
 			scene.remove(ballList[0]);

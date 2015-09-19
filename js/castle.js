@@ -93,6 +93,17 @@ function CreateCastle(buildString)
 			castle.push(brick);
 			scene.add(brick);
 		}
+
+		for( var i = 0; i < buildString.length; i++ )
+		{
+			var brick = GenerateBrick(0);
+			brick.position.x = buildString[i].charAt(0) * 10;
+			brick.position.y = buildString[i].charAt(1) * 10;
+			brick.position.z = buildString[i].charAt(2) * 10 + (brick._physijs.height / 2) + 10;
+			//console.log(brick.position.x, "  ", brick.position.y, "  ", brick.position.z);
+			castle.push(brick);
+			scene.add(brick);
+		}
 	}
 
 	return castle;

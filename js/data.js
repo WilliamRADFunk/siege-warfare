@@ -1,7 +1,11 @@
 var camera;
 var camera1;
 var camera2;
+var camera2x = 0;
+var camera2y = 0;
+var camera2z = 0;
 var camera3;
+var cameraSelected = 1;
 var scene;
 var fog;
 var renderer;

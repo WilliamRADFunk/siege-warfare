@@ -1,6 +1,6 @@
 function GenerateCannon()
 {
-	var cylinderTexture = THREE.ImageUtils.loadTexture('assets/barrel-3.png');
+	var cylinderTexture = THREE.ImageUtils.loadTexture('assets/barrel-1.jpg');
 	var cylinderGeometry = new THREE.CylinderGeometry( 2, 2, 20, 32 );
 	var cylinderMaterial = new THREE.MeshLambertMaterial({map: cylinderTexture});
 	var can = new THREE.Mesh( cylinderGeometry, cylinderMaterial );
@@ -157,17 +157,22 @@ function GenerateCannonBall(caliber)
 	if( caliber == 0 )
 	{
 		ballGeometry = new THREE.SphereGeometry( 2, 32, 32, 0, Math.PI * 2, 0, Math.PI * 2 );
-		ballMaterial = Physijs.createMaterial( new THREE.MeshLambertMaterial({map: ball1Texture}), 1.95, 0.1 );
+		ballMaterial = Physijs.createMaterial( new THREE.MeshLambertMaterial({map: ball1Texture}), 1, 0.05 );
 	}
 	else if( caliber == 1 )
 	{
 		ballGeometry = new THREE.SphereGeometry( 2, 32, 32, 0, Math.PI * 2, 0, Math.PI * 2 );
-		ballMaterial = Physijs.createMaterial( new THREE.MeshLambertMaterial({map: ball2Texture}), 0.95, 0.1 );
+		ballMaterial = Physijs.createMaterial( new THREE.MeshLambertMaterial({map: ball2Texture}), 1, 0.05 );
 	}
-	else
+	else if( caliber == 2 )
 	{
 		ballGeometry = new THREE.SphereGeometry( 2, 32, 32, 0, Math.PI * 2, 0, Math.PI * 2 );
-		ballMaterial = Physijs.createMaterial( new THREE.MeshLambertMaterial({map: ball3Texture}), 0.95, 0.1 );
+		ballMaterial = Physijs.createMaterial( new THREE.MeshLambertMaterial({map: ball3Texture}), 1, 0.05 );
+	}
+	else if( caliber == 3 )
+	{
+		ballGeometry = new THREE.SphereGeometry( 1, 32, 32, 0, Math.PI * 2, 0, Math.PI * 2 );
+		ballMaterial = Physijs.createMaterial( new THREE.MeshLambertMaterial({map: ball2Texture}), 1, 0.05 );
 	}
 	
 	ball = new Physijs.SphereMesh( ballGeometry, ballMaterial, 100 );
@@ -175,9 +180,39 @@ function GenerateCannonBall(caliber)
 	{
 		ball.addEventListener( 'collision', function( other_object, linear_velocity, angular_velocity )
 		{
-			if(Math.abs(linear_velocity.x))
+			console.log(other_object.id, " hit something ", this, " at ", angular_velocity, "meters per second.");
+			if(Math.abs(linear_velocity.x) >= 0)
 			{
-				console.log(other_object.id, " hit something at ", Math.abs(linear_velocity.x), "meters per second.");
+				var position = this.position;
+				scene.remove(this);
+				ballList.splice(ballList.indexOf(this), 1);
+				for(var i = 0; i < 3; i++)
+				{
+					var miniballMaker = function(position) {
+						var balls = GenerateCannonBall(3);
+						balls.position = position;
+						ballList.push(balls);
+						scene.add(balls);
+						var randomx = Math.floor((Math.random() * 50) + 1);
+						if(randomx % 2 == 0)
+						{
+							randomx = -randomx;
+						}
+						var randomy = Math.floor((Math.random() * 50) + 1);
+						if(randomy % 2 == 0)
+						{
+							randomy = -randomy;
+						}
+						var randomz = Math.floor((Math.random() * 50) + 1);
+						if(randomz % 2 == 0)
+						{
+							randomz = -randomz;
+						}
+						console.log(randomx, " ", randomy, " ", randomz);
+						//balls.applyCentralImpulse( new THREE.Vector3( randomx * ball.mass, -randomy * ball.mass, -randomz * ball.mass) );
+					}
+					setInterval(miniballMaker(position), 0);
+				}
 			}
 		});
 	}

@@ -13,4 +13,11 @@ function GenerateCameras()
 	camera3.position.y = 0;
 	camera3.position.z = 450;
 	camera3.lookAt( scene.position );
+
+	camera4 = new THREE.PerspectiveCamera( 55, WIDTH / HEIGHT, 0.1, 1000 );
+	camera4.position.x = -50;
+	camera4.position.y = 170;
+	camera4.position.z = 80;
+	camera4.lookAt( scene.position );
+	camera4.rotation.z = -Math.PI;
 }

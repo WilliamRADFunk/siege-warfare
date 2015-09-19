@@ -7,6 +7,12 @@ function KeyPressed()
 		{
 			cannon.rotation.z = (119.999 * (Math.PI / 180));
 		}
+		if( camera == camera2)
+		{
+			camera.lookAt(new THREE.Vector3(cannon.position.x + 20.5, (cannon.rotation.z - (Math.PI / 2)) * 20, cannon.position.z + (20 * Math.tan(Math.abs(cannon.rotation.y))) + 2));
+			camera.rotation.y = -90 * Math.PI / 180;
+			camera.rotation.z = -90 * Math.PI / 180;
+		}
 	}
 	else if( keyboard.pressed("right") )
 	{
@@ -14,6 +20,12 @@ function KeyPressed()
 		if( cannon.rotation.z < (60 * (Math.PI / 180)) )
 		{
 			cannon.rotation.z = (60.001 * (Math.PI / 180));
+		}
+		if( camera == camera2)
+		{
+			camera.lookAt(new THREE.Vector3(cannon.position.x + 20.5, (cannon.rotation.z - (Math.PI / 2)) * 20, cannon.position.z + (20 * Math.tan(Math.abs(cannon.rotation.y))) + 2));
+			camera.rotation.y = -90 * Math.PI / 180;
+			camera.rotation.z = -90 * Math.PI / 180;
 		}
 	}
 	else if( keyboard.pressed("up") )
@@ -39,7 +51,7 @@ function KeyPressed()
 	else if( keyboard.pressed("camera-two") )
 	{
 		camera = camera2
-		camera.lookAt(cannon.position);
+		camera.lookAt(new THREE.Vector3(cannon.position.x + 20.5, (cannon.rotation.z - (Math.PI / 2)) * 20, cannon.position.z + (20 * Math.tan(Math.abs(cannon.rotation.y))) + 2));
 		camera2.rotation.y = -90 * Math.PI / 180;
 		camera2.rotation.z = -90 * Math.PI / 180;
 	}
@@ -63,7 +75,7 @@ function KeyPressed()
 			// Generate cannon ball
 			ball = GenerateCannonBall(caliber);
 			scene.add( ball );
-			ball.applyCentralImpulse( new THREE.Vector3( 200 * ball.mass, -( Math.PI / 2 - cannon.rotation.z ) * 4000, -cannon.rotation.y * 10000 ) );
+			ball.applyCentralImpulse( new THREE.Vector3( 200 * ball.mass, -( Math.PI / 2 - cannon.rotation.z ) * (200 * ball.mass), -cannon.rotation.y * 10000 ) );
 			lastFired = 120;
 		}
 	}

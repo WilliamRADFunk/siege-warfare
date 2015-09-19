@@ -5,21 +5,21 @@ function GenerateBrick(brickType)
 		var brickGeometry = new THREE.BoxGeometry(10, 10, 10);
 		var brickMaterial = Physijs.createMaterial( new THREE.MeshBasicMaterial({map: brickTexture}), .95, .95 );
 		var brick = new Physijs.BoxMesh( brickGeometry, brickMaterial );
-		brick.mass *= 0.35;
+		brick.mass *= 0.50;
 	}
 	if(brickType == 1)
 	{
 		var brickGeometry = new THREE.BoxGeometry(10, 20, 10);
 		var brickMaterial = Physijs.createMaterial( new THREE.MeshBasicMaterial({map: brickTexture}), .95, .95 );
 		var brick = new Physijs.BoxMesh( brickGeometry, brickMaterial );
-		brick.mass *= 0.25;
+		brick.mass *= 0.50;
 	}
 	if(brickType == 2)
 	{
 		var brickGeometry = new THREE.BoxGeometry(20, 10, 10);
 		var brickMaterial = Physijs.createMaterial( new THREE.MeshBasicMaterial({map: brickTexture}), .95, .95 );
 		var brick = new Physijs.BoxMesh( brickGeometry, brickMaterial );
-		brick.mass *= 0.25;
+		brick.mass *= 0.50;
 	}
 
 	return brick;

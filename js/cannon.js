@@ -156,17 +156,17 @@ function GenerateCannonBall(caliber)
 
 	if( caliber == 0 )
 	{
-		ballGeometry = new THREE.SphereGeometry( 3, 32, 32, 0, Math.PI * 2, 0, Math.PI * 2 );
+		ballGeometry = new THREE.SphereGeometry( 2, 32, 32, 0, Math.PI * 2, 0, Math.PI * 2 );
 		ballMaterial = Physijs.createMaterial( new THREE.MeshLambertMaterial({map: ball1Texture}), 1.95, 0.1 );
 	}
 	else if( caliber == 1 )
 	{
-		ballGeometry = new THREE.SphereGeometry( 3, 32, 32, 0, Math.PI * 2, 0, Math.PI * 2 );
+		ballGeometry = new THREE.SphereGeometry( 2, 32, 32, 0, Math.PI * 2, 0, Math.PI * 2 );
 		ballMaterial = Physijs.createMaterial( new THREE.MeshLambertMaterial({map: ball2Texture}), 0.95, 0.1 );
 	}
 	else
 	{
-		ballGeometry = new THREE.SphereGeometry( 3, 32, 32, 0, Math.PI * 2, 0, Math.PI * 2 );
+		ballGeometry = new THREE.SphereGeometry( 2, 32, 32, 0, Math.PI * 2, 0, Math.PI * 2 );
 		ballMaterial = Physijs.createMaterial( new THREE.MeshLambertMaterial({map: ball3Texture}), 0.95, 0.1 );
 	}
 	
@@ -182,9 +182,10 @@ function GenerateCannonBall(caliber)
 		});
 	}
 	
-	ball.position.x = cannon.position.x + 20;
-	ball.position.y = cannon.position.y;
+	ball.position.x = cannon.position.x + 20.5;
+	ball.position.y = (cannon.rotation.z - (Math.PI / 2)) * 20;
 	ball.position.z = cannon.position.z + (20 * Math.tan(Math.abs(cannon.rotation.y))) + 2;
+	console.log("ball x-y-z: ", ball.position);
 
 	ballList.push(ball);
 	return ball;

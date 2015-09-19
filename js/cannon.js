@@ -145,6 +145,7 @@ function GenerateCannon()
 	cannon.rotation.z = Math.PI / 2;
 	cannon.position.x -= 144;
 	cannon.position.z += 5;
+	cannon.name = "Cannon";
 	return cannon;
 }
 
@@ -164,15 +165,10 @@ function GenerateCannonBall(caliber)
 		ballGeometry = new THREE.SphereGeometry( 2, 32, 32, 0, Math.PI * 2, 0, Math.PI * 2 );
 		ballMaterial = Physijs.createMaterial( new THREE.MeshLambertMaterial({map: ball2Texture}), 1, 0.05 );
 	}
-	else if( caliber == 2 )
+	else
 	{
 		ballGeometry = new THREE.SphereGeometry( 2, 32, 32, 0, Math.PI * 2, 0, Math.PI * 2 );
 		ballMaterial = Physijs.createMaterial( new THREE.MeshLambertMaterial({map: ball3Texture}), 1, 0.05 );
-	}
-	else if( caliber == 3 )
-	{
-		ballGeometry = new THREE.SphereGeometry( 1, 32, 32, 0, Math.PI * 2, 0, Math.PI * 2 );
-		ballMaterial = Physijs.createMaterial( new THREE.MeshLambertMaterial({map: ball2Texture}), 1, 0.05 );
 	}
 	
 	ball = new Physijs.SphereMesh( ballGeometry, ballMaterial, 100 );
@@ -181,46 +177,46 @@ function GenerateCannonBall(caliber)
 		ball.addEventListener( 'collision', function( other_object, linear_velocity, angular_velocity )
 		{
 			console.log(other_object.id, " hit something ", this, " at ", angular_velocity, "meters per second.");
-			if(Math.abs(linear_velocity.x) >= 0)
+			
+			var position = this.position;
+			scene.remove(this);
+			ballList.splice(ballList.indexOf(this), 1);
+			for(var i = 0; i < 5; i++)
 			{
-				var position = this.position;
-				scene.remove(this);
-				ballList.splice(ballList.indexOf(this), 1);
-				for(var i = 0; i < 3; i++)
+				ballsGeometry = new THREE.SphereGeometry( 1, 32, 32, 0, Math.PI * 2, 0, Math.PI * 2 );
+				ballsMaterial = Physijs.createMaterial( new THREE.MeshLambertMaterial({map: ball2Texture}), 1, 0.05 );
+				var balls = new Physijs.SphereMesh( ballsGeometry, ballsMaterial, 100 );
+				balls.mass *= 0.25;
+				balls.position.set(position.x + i, position.y - i, position.z);
+				balls.name = "Shrapnel";
+				ballList.push(balls);
+				scene.add(balls);
+				var randomx = Math.floor((Math.random() * 30) + 1);
+				if(randomx % 2 == 0)
 				{
-					var miniballMaker = function(position) {
-						var balls = GenerateCannonBall(3);
-						balls.position = position;
-						ballList.push(balls);
-						scene.add(balls);
-						var randomx = Math.floor((Math.random() * 50) + 1);
-						if(randomx % 2 == 0)
-						{
-							randomx = -randomx;
-						}
-						var randomy = Math.floor((Math.random() * 50) + 1);
-						if(randomy % 2 == 0)
-						{
-							randomy = -randomy;
-						}
-						var randomz = Math.floor((Math.random() * 50) + 1);
-						if(randomz % 2 == 0)
-						{
-							randomz = -randomz;
-						}
-						console.log(randomx, " ", randomy, " ", randomz);
-						//balls.applyCentralImpulse( new THREE.Vector3( randomx * ball.mass, -randomy * ball.mass, -randomz * ball.mass) );
-					}
-					setInterval(miniballMaker(position), 0);
+					randomx = -randomx;
 				}
+				var randomy = Math.floor((Math.random() * 30) + 1);
+				if(randomy % 2 == 0)
+				{
+					randomy = -randomy;
+				}
+				var randomz = Math.floor((Math.random() * 30) + 1);
+				if(randomz % 2 == 0)
+				{
+					randomz = -randomz;
+				}
+				console.log(randomx, " ", randomy, " ", randomz);
+				balls.applyCentralImpulse( new THREE.Vector3( randomx * ball.mass, -randomy * ball.mass, -randomz * ball.mass) );
 			}
 		});
 	}
 	
-	ball.position.x = cannon.position.x + 20.5;
-	ball.position.y = (cannon.rotation.z - (Math.PI / 2)) * 20;
-	ball.position.z = cannon.position.z + (20 * Math.tan(Math.abs(cannon.rotation.y))) + 2;
+	ball.position.x = cannon.position.x + 17.5;
+	ball.position.y = (cannon.rotation.z - (Math.PI / 2)) * 17;
+	ball.position.z = cannon.position.z + (17 * Math.tan(Math.abs(cannon.rotation.y))) + 2;
 
+	ball.name = "Cannonball";
 	ballList.push(ball);
 	return ball;
 }

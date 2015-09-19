@@ -37,6 +37,7 @@ function CreateCastle(buildString)
 				brick.position.x = 20;
 				brick.position.y = j - 100 + k;
 				brick.position.z = i + 2.5;
+				brick.name = "Brick";
 				castle.push(brick);
 				scene.add(brick);
 			}
@@ -50,6 +51,7 @@ function CreateCastle(buildString)
 				brick.position.x = 160;
 				brick.position.y = j - 100 - k;
 				brick.position.z = i + 2.5;
+				brick.name = "Brick";
 				castle.push(brick);
 				scene.add(brick);
 			}
@@ -63,6 +65,7 @@ function CreateCastle(buildString)
 				brick.position.x = j + k;
 				brick.position.y = -115;
 				brick.position.z = i + 2.5;
+				brick.name = "Brick";
 				castle.push(brick);
 				scene.add(brick);
 			}
@@ -76,6 +79,7 @@ function CreateCastle(buildString)
 				brick.position.x = j + k;
 				brick.position.y = 115;
 				brick.position.z = i + 2.5;
+				brick.name = "Brick";
 				castle.push(brick);
 				scene.add(brick);
 			}
@@ -83,26 +87,18 @@ function CreateCastle(buildString)
 	}
 	else
 	{
-		for( var i = 0; i < buildString.length; i++ )
+		for( var i = 0; i < buildString[0].charAt(0); i++ )
 		{
-			var brick = GenerateBrick(0);
-			brick.position.x = buildString[i].charAt(0) * 10;
-			brick.position.y = buildString[i].charAt(1) * 10;
-			brick.position.z = buildString[i].charAt(2) * 10 + (brick._physijs.height / 2);
-			//console.log(brick.position.x, "  ", brick.position.y, "  ", brick.position.z);
-			castle.push(brick);
-			scene.add(brick);
-		}
-
-		for( var i = 0; i < buildString.length; i++ )
-		{
-			var brick = GenerateBrick(0);
-			brick.position.x = buildString[i].charAt(0) * 10;
-			brick.position.y = buildString[i].charAt(1) * 10;
-			brick.position.z = buildString[i].charAt(2) * 10 + (brick._physijs.height / 2) + 10;
-			//console.log(brick.position.x, "  ", brick.position.y, "  ", brick.position.z);
-			castle.push(brick);
-			scene.add(brick);
+			for( var j = 1; j < buildString.length; j++ )
+			{
+				var brick = GenerateBrick(0);
+				brick.position.x = buildString[j].charAt(0) * 10;
+				brick.position.y = buildString[j].charAt(1) * 10;
+				brick.position.z = buildString[j].charAt(2) * 10 + (brick._physijs.height / 2) + (10 * i);
+				brick.name = "Brick";
+				castle.push(brick);
+				scene.add(brick);
+			}
 		}
 	}
 

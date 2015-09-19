@@ -7,6 +7,12 @@
 		 Cannonball textures provided by:
 			http://imagestack.co/218445021-shop-textures.html
 			http://www.dreamstime.com/stock-images-quartz-porphyry-rhyolite-estonia-image25775514
+		 Landscape & sky textures provided by:
+			http://www.cryengine.com/community/viewtopic.php?f=309&t=104955&start=30
+			http://texaskellers.com/2013/06/11/colorado-springs-to-santa-fe-n-m/
+			http://blog.jebbo.co.uk/2008/09/
+			http://www.michellefirmentreid.com/blog/2011/07/
+			http://www.clodaghobrien.com/tag/relationship/
 	-->
 	<title>Siege Warfare</title>
 	<!-- WebGL wrapper library -->
@@ -63,10 +69,14 @@
 		renderer.setSize( WIDTH, HEIGHT );
 		renderer.shadowMapEnabled = true;
 
-		// 1. Drop in ground plane
+		// Generate ground, sky, and walls.
 		var terrain = GenerateTerrain();
 		scene.add( terrain[0] );
-		// /scene.add( terrain[1] );
+		scene.add( terrain[1] );
+		scene.add( terrain[2] );
+		scene.add( terrain[3] );
+		scene.add( terrain[4] );
+		scene.add( terrain[5] );
 
 		// Generate cannon
 		cannon = GenerateCannon();
@@ -113,7 +123,7 @@
 		KeyPressed();
 
 		// Makes sure ammo type change happens once per click.
-		if(updateCounter % 30 == 0)
+		if(updateCounter % 45 == 0)
 		{
 			ballChanged = false;
 		}

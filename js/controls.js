@@ -75,11 +75,11 @@ function KeyPressed()
 	}
 	else if( cameraSelected != 2 && keyboard.pressed("camera-two") )
 	{
-		cannon.rotation.z = Math.PI / 2;
-		cannon.rotation.y = 0;
-
 		camera = camera2
 		cameraSelected = 2;
+
+		cannon.rotation.z = Math.PI / 2;
+		cannon.rotation.y = 0;
 
 		camera.position.x = cannon.position.x;
 		camera.position.y = cannon.position.y;
@@ -115,7 +115,7 @@ function KeyPressed()
 			ball = GenerateCannonBall(caliber);
 			scene.add( ball );
 			ball.applyCentralImpulse( new THREE.Vector3( 200 * ball.mass, -( Math.PI / 2 - cannon.rotation.z ) * (200 * ball.mass), -cannon.rotation.y * 10000 ) );
-			lastFired = 120;
+			lastFired = 90;
 		}
 	}
 }

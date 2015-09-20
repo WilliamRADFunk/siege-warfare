@@ -1,23 +1,5 @@
 <html>
 <head>
-	<!-- Cannon barrel textures provided by:
-			http://www.flickriver.com/photos/steffen-larsen/tags/textures/
-			http://shortformvideo.co.uk/product/texturepak1/
-			https://www.pinterest.com/pin/397935317051513848/
-		 Cannonball textures provided by:
-			http://imagestack.co/218445021-shop-textures.html
-			http://www.dreamstime.com/stock-images-quartz-porphyry-rhyolite-estonia-image25775514
-		 Landscape & sky textures provided by:
-			http://www.cryengine.com/community/viewtopic.php?f=309&t=104955&start=30
-			http://texaskellers.com/2013/06/11/colorado-springs-to-santa-fe-n-m/
-			http://blog.jebbo.co.uk/2008/09/
-			http://www.michellefirmentreid.com/blog/2011/07/
-			http://www.clodaghobrien.com/tag/relationship/
-			http://allthingsprecious.deviantart.com/art/Darkness-Texture-2-411014813
-			http://blog.olivierdutre.com/2011/07/step-by-step.html
-			http://sineluce-stock.deviantart.com/art/crack-texture-198448227
-			http://sftextures.com/2014/10/17/mysterious-ground-dark-dodge-asphalt-sunny-spots-cave-holes-texture/
-	-->
 	<title>Siege Warfare</title>
 	<!-- WebGL wrapper library -->
 	<script src="js/external/three.js"></script>
@@ -50,15 +32,28 @@
 	Physijs.scripts.worker = 'js/external/physijs_worker.js';
 	Physijs.scripts.ammo = 'ammo.js';
 
-	var explode, one, two, three, four, five;
 	function loadSoundFX()
 	{
-		explode = new Audio("Explosion.mp3");
-		one = new Audio("1.mp3");
-		two = new Audio("2.mp3");
-		three = new Audio("3.mp3");
-		four = new Audio("4.mp3");
-		five = new Audio("5.mp3");
+		background_gunfire_01 = new Audio("background-gunfire-01.mp3");
+		background_gunfire_02 = new Audio("background-gunfire-02.mp3");
+		background_gunfire_03 = new Audio("background-gunfire-03.mp3");
+		cannon_fire_01 = new Audio("cannon-fire-01.mp3");
+		cannon_fire_02 = new Audio("cannon-fire-02.mp3");
+		cannon_fire_03 = new Audio("cannon-fire-03.mp3");
+		cannon_fire_04 = new Audio("cannon-fire-04.mp3");
+		collision_explosion_01 = new Audio("collision-explosion-01.mp3");
+		collision_explosion_02 = new Audio("collision-explosion-02.mp3");
+		collision_explosion_03 = new Audio("collision-explosion-03.mp3");
+		collision_explosion_04 = new Audio("collision-explosion-04.mp3");
+		theme_beach_01 = new Audio("theme-beach-01.mp3");
+		theme_beach_02 = new Audio("theme-beach-02.mp3");
+		theme_rainforest_01 = new Audio("theme-rainforest-01.mp3");
+		theme_thunder_01 = new Audio("theme-thunder-01.mp3");
+		theme_thunder_02 = new Audio("theme-thunder-02.mp3");
+		theme_thunder_03 = new Audio("theme-thunder-03.mp3");
+		theme_thunder_04 = new Audio("theme-thunder-04.mp3");
+		theme_thunder_05 = new Audio("theme-thunder-05.mp3");
+		theme_thunder_06 = new Audio("theme-thunder-06.mp3");
 	}
 	
 	function init()
@@ -84,8 +79,12 @@
 		renderer.setSize( WIDTH, HEIGHT );
 		renderer.shadowMapEnabled = true;
 
+		// Controls landscape textures, castle brick textures,
+		// SoundFX, and more.
+		theme = Math.floor((Math.random() * 3));
+
 		// Generate ground, sky, and walls.
-		var terrain = GenerateTerrain( Math.floor((Math.random() * 3)) );
+		var terrain = GenerateTerrain( theme );
 		scene.add( terrain[0] );
 		scene.add( terrain[1] );
 		scene.add( terrain[2] );
@@ -97,12 +96,10 @@
 		cannon = GenerateCannon();
 		scene.add( cannon );
 
-		// Load ball textures
+		// Load textures
 		ball1Texture = THREE.ImageUtils.loadTexture('assets/textures/guns/cannonball-1.jpg');
 		ball2Texture = THREE.ImageUtils.loadTexture('assets/textures/guns/cannonball-2.jpg');
 		ball3Texture = THREE.ImageUtils.loadTexture('assets/textures/guns/cannonball-3.jpg');
-
-		// Load brick texture
 		brickTexture = THREE.ImageUtils.loadTexture('assets/textures/materials/brick-1.jpg');
 
 		// Generate a castle
@@ -183,4 +180,44 @@
 
 </script>
 </body>
+<!-- Cannon barrel textures provided by:
+			http://www.flickriver.com/photos/steffen-larsen/tags/textures/
+			http://shortformvideo.co.uk/product/texturepak1/
+			https://www.pinterest.com/pin/397935317051513848/
+		 Cannonball textures provided by:
+			http://imagestack.co/218445021-shop-textures.html
+			http://www.dreamstime.com/stock-images-quartz-porphyry-rhyolite-estonia-image25775514
+		 Landscape & sky textures provided by:
+			http://www.cryengine.com/community/viewtopic.php?f=309&t=104955&start=30
+			http://texaskellers.com/2013/06/11/colorado-springs-to-santa-fe-n-m/
+			http://blog.jebbo.co.uk/2008/09/
+			http://www.michellefirmentreid.com/blog/2011/07/
+			http://www.clodaghobrien.com/tag/relationship/
+			http://allthingsprecious.deviantart.com/art/Darkness-Texture-2-411014813
+			http://blog.olivierdutre.com/2011/07/step-by-step.html
+			http://sineluce-stock.deviantart.com/art/crack-texture-198448227
+			http://sftextures.com/2014/10/17/mysterious-ground-dark-dodge-asphalt-sunny-spots-cave-holes-texture/
+		 SoundFX provided by:
+		 	http://soundbible.com/909-Cannon.html
+		 	http://soundbible.com/284-Bullets-Guns-Cannons.html
+		 	http://soundbible.com/1339-Sonic-Boom.html
+		 	http://soundbible.com/1468-Depth-Charge-Shorter.html
+		 	http://soundbible.com/1854-More-Thunder.html
+		 	http://soundbible.com/1837-Lightning-Bolt-Light-Rain.html
+		 	http://soundbible.com/1835-More-Thunder-2.html
+		 	http://soundbible.com/907-Distant-Thunder.html
+		 	http://soundbible.com/916-Perfect-Thunder-Storm.html
+		 	http://soundbible.com/886-Distant-Thunder-And-Light-Rain.html
+		 	http://soundbible.com/2078-Gun-Battle-Sound.html
+		 	http://soundbible.com/1919-Shotgun-Blast.html
+		 	http://soundbible.com/1807-Explosion-Ultra-Bass.html
+		 	http://soundbible.com/1367-Grenade.html
+		 	http://soundbible.com/1234-Bomb.html
+		 	http://soundbible.com/576-Barrel-Exploding.html
+		 	http://soundbible.com/483-Explosion.html
+		 	http://soundbible.com/1818-Rainforest-Ambience.html
+		 	http://soundbible.com/1991-Sounds-Of-War-V-10.html
+		 	http://soundbible.com/1936-Crisp-Ocean-Waves.html
+		 	http://soundbible.com/1935-Ocean-Waves.html
+	-->
 </html>

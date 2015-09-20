@@ -21,7 +21,8 @@ var background_gunfire_01,
 	theme_thunder_06,
 	theme_thunder = [];
 	background_gunfire = [],
-	cannon_fire = [];
+	cannon_fire = [],
+	collision_explosion = [];
 var camera,
 	camera1,
 	camera2,

@@ -19,7 +19,6 @@ function loadSoundFX()
 	enemy_killed_01 = new Audio("assets/audio/enemy-killed-01.mp3");
 	theme_beach_01 = new Audio("assets/audio/theme-beach-01.mp3");
 	theme_beach_01.loop = true;
-	theme_beach_02 = new Audio("assets/audio/theme-beach-02.mp3");
 	theme_rainforest_01 = new Audio("assets/audio/theme-rainforest-01.mp3");
 	theme_rainforest_01.loop = true;
 	theme_thunder_01 = new Audio("assets/audio/theme-thunder-01.mp3");

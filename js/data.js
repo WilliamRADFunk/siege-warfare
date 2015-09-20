@@ -11,7 +11,6 @@ var background_gunfire_01,
 	collision_explosion_03,
 	collision_explosion_04,
 	theme_beach_01,
-	theme_beach_02,
 	theme_rainforest_01,
 	theme_thunder_01,
 	theme_thunder_02,
@@ -41,7 +40,7 @@ var ammoType1Count = 50;
 var ammoType2Count = 20;
 var ammoType3Count = 5;
 var caliber = 0;
-var castleTemplate1 = ["5", "000","010","020","030","040","050","100","200","300","400","500","150","250","350","450","550","510","520","530","540"];
+var castleTemplate1 = ["5", "0000","0010","0020","0030","0040","0050","0100","0200","0300","0400","0500","0150","0250","0350","0450","0550","0510","0520","0530","0540"];
 var castle = [];
 var updateCounter = 0;
 var lastFired = 0;

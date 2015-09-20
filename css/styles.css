@@ -17,7 +17,8 @@ h4
 }
 #HUD-left,
 #HUD-right,
-#HUD-timer
+#HUD-timer,
+#HUD-legend
 {
 	background-color: #000000;
 	color: #FFFFFF;
@@ -43,10 +44,30 @@ h4
 	bottom: 3%;
 	left: 45%;
 }
-#timer-container
+#HUD-legend
+{
+	bottom: 3%;
+	height: auto;
+	left: 3%;
+	width: 10%;
+}
+#timer-container,
+#legend-container
 {
 	height: 95%;
 	padding-top: 5%;
+}
+#legend-container h4
+{
+	margin-bottom: 10%;
+}
+#legend-container p
+{
+	display: block;
+	font-size: 12px;
+	margin-bottom: 5%;
+	padding-left: 10%;
+	text-align: left;
 }
 .ammo
 {
@@ -61,7 +82,7 @@ h4
 #explosiveAmount,
 #shrapnelAmount
 {
-	padding-top: 95%;
+	padding-top: 90%;
 }
 .score
 {

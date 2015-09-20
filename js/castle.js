@@ -85,9 +85,9 @@ function CreateCastle(buildString)
 			for( var j = 1; j < buildString.length; j++ )
 			{
 				var brick = GenerateBrick();
-				brick.position.x = buildString[j].charAt(0) * 10;
-				brick.position.y = buildString[j].charAt(1) * 10;
-				brick.position.z = buildString[j].charAt(2) * 10 + (brick._physijs.height / 2) + (10 * i);
+				brick.position.x = buildString[j].charAt(1) * 10;
+				brick.position.y = buildString[j].charAt(2) * 10;
+				brick.position.z = buildString[j].charAt(3) * 10 + (brick._physijs.height / 2) + (brick._physijs.height * i);
 				brick.name = "Brick";
 				castle.push(brick);
 				scene.add(brick);

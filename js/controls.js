@@ -146,6 +146,10 @@ function KeyPressed()
 		caliber = 2;
 		console.log("Ammo Type: ", caliber);
 	}
+	else if( keyboard.pressed("fast-forward") )
+	{
+		timer -= 10;
+	}
 	else if( keyboard.pressed("space") )
 	{
 		if( lastFired <= 0 )

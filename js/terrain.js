@@ -16,7 +16,7 @@ function GenerateTerrain(terrainTemplate)
 		groundTexture.wrapT = THREE.RepeatWrapping;
 		groundTexture.repeat.set( 4, 4 );
 	}
-	else if(terrainTemplate == 2)
+	else
 	{
 		var groundTexture = THREE.ImageUtils.loadTexture('assets/textures/ground/groundterrain-7.jpg');
 		groundTexture.wrapS = THREE.RepeatWrapping;
@@ -89,7 +89,7 @@ function GenerateTerrain(terrainTemplate)
 		wall4.rotation.x = Math.PI / 2;
 		wall4.rotation.y = 3 * (Math.PI / 2);
 	}
-	else if(terrainTemplate == 2)
+	else
 	{
 		var wallTexture = THREE.ImageUtils.loadTexture('assets/textures/landscapes/horizon-6.png');
 		wallTexture.wrapS = THREE.RepeatWrapping;
@@ -129,7 +129,7 @@ function GenerateTerrain(terrainTemplate)
 		sky = new THREE.Mesh( new THREE.PlaneGeometry( 400, 400 ), skyMaterial );
 		sky.position.set(0, 0, 400);
 	}
-	else if(terrainTemplate == 2)
+	else
 	{
 		var wallTexture = THREE.ImageUtils.loadTexture('assets/textures/landscapes/sky-2.jpg');
 		var skyMaterial = new THREE.MeshBasicMaterial({map: wallTexture, side: THREE.BackSide});

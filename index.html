@@ -100,7 +100,20 @@
 		ball1Texture = THREE.ImageUtils.loadTexture('assets/textures/guns/cannonball-1.jpg');
 		ball2Texture = THREE.ImageUtils.loadTexture('assets/textures/guns/cannonball-2.jpg');
 		ball3Texture = THREE.ImageUtils.loadTexture('assets/textures/guns/cannonball-3.jpg');
-		brickTexture = THREE.ImageUtils.loadTexture('assets/textures/materials/brick-1.jpg');
+
+		if(theme == 0)
+		{
+			brickTexture = THREE.ImageUtils.loadTexture('assets/textures/materials/brick-5.jpg');
+		}
+		else if(theme == 1)
+		{
+			brickTexture = THREE.ImageUtils.loadTexture('assets/textures/materials/brick-4.jpg');
+		}
+		else
+		{
+			brickTexture = THREE.ImageUtils.loadTexture('assets/textures/materials/brick-2.jpg');
+		}
+		
 
 		// Generate a castle
 		castle = CreateCastle(castleTemplate1);
@@ -181,43 +194,48 @@
 </script>
 </body>
 <!-- Cannon barrel textures provided by:
-			http://www.flickriver.com/photos/steffen-larsen/tags/textures/
-			http://shortformvideo.co.uk/product/texturepak1/
-			https://www.pinterest.com/pin/397935317051513848/
-		 Cannonball textures provided by:
-			http://imagestack.co/218445021-shop-textures.html
-			http://www.dreamstime.com/stock-images-quartz-porphyry-rhyolite-estonia-image25775514
-		 Landscape & sky textures provided by:
-			http://www.cryengine.com/community/viewtopic.php?f=309&t=104955&start=30
-			http://texaskellers.com/2013/06/11/colorado-springs-to-santa-fe-n-m/
-			http://blog.jebbo.co.uk/2008/09/
-			http://www.michellefirmentreid.com/blog/2011/07/
-			http://www.clodaghobrien.com/tag/relationship/
-			http://allthingsprecious.deviantart.com/art/Darkness-Texture-2-411014813
-			http://blog.olivierdutre.com/2011/07/step-by-step.html
-			http://sineluce-stock.deviantart.com/art/crack-texture-198448227
-			http://sftextures.com/2014/10/17/mysterious-ground-dark-dodge-asphalt-sunny-spots-cave-holes-texture/
-		 SoundFX provided by:
-		 	http://soundbible.com/909-Cannon.html
-		 	http://soundbible.com/284-Bullets-Guns-Cannons.html
-		 	http://soundbible.com/1339-Sonic-Boom.html
-		 	http://soundbible.com/1468-Depth-Charge-Shorter.html
-		 	http://soundbible.com/1854-More-Thunder.html
-		 	http://soundbible.com/1837-Lightning-Bolt-Light-Rain.html
-		 	http://soundbible.com/1835-More-Thunder-2.html
-		 	http://soundbible.com/907-Distant-Thunder.html
-		 	http://soundbible.com/916-Perfect-Thunder-Storm.html
-		 	http://soundbible.com/886-Distant-Thunder-And-Light-Rain.html
-		 	http://soundbible.com/2078-Gun-Battle-Sound.html
-		 	http://soundbible.com/1919-Shotgun-Blast.html
-		 	http://soundbible.com/1807-Explosion-Ultra-Bass.html
-		 	http://soundbible.com/1367-Grenade.html
-		 	http://soundbible.com/1234-Bomb.html
-		 	http://soundbible.com/576-Barrel-Exploding.html
-		 	http://soundbible.com/483-Explosion.html
-		 	http://soundbible.com/1818-Rainforest-Ambience.html
-		 	http://soundbible.com/1991-Sounds-Of-War-V-10.html
-		 	http://soundbible.com/1936-Crisp-Ocean-Waves.html
-		 	http://soundbible.com/1935-Ocean-Waves.html
+		http://www.flickriver.com/photos/steffen-larsen/tags/textures/
+		http://shortformvideo.co.uk/product/texturepak1/
+		https://www.pinterest.com/pin/397935317051513848/
+	 Cannonball textures provided by:
+		http://imagestack.co/218445021-shop-textures.html
+		http://www.dreamstime.com/stock-images-quartz-porphyry-rhyolite-estonia-image25775514
+	 Landscape & sky textures provided by:
+		http://www.cryengine.com/community/viewtopic.php?f=309&t=104955&start=30
+		http://texaskellers.com/2013/06/11/colorado-springs-to-santa-fe-n-m/
+		http://blog.jebbo.co.uk/2008/09/
+		http://www.michellefirmentreid.com/blog/2011/07/
+		http://www.clodaghobrien.com/tag/relationship/
+		http://allthingsprecious.deviantart.com/art/Darkness-Texture-2-411014813
+		http://blog.olivierdutre.com/2011/07/step-by-step.html
+		http://sineluce-stock.deviantart.com/art/crack-texture-198448227
+		http://sftextures.com/2014/10/17/mysterious-ground-dark-dodge-asphalt-sunny-spots-cave-holes-texture/
+	 SoundFX provided by:
+	 	http://soundbible.com/909-Cannon.html
+	 	http://soundbible.com/284-Bullets-Guns-Cannons.html
+	 	http://soundbible.com/1339-Sonic-Boom.html
+	 	http://soundbible.com/1468-Depth-Charge-Shorter.html
+	 	http://soundbible.com/1854-More-Thunder.html
+	 	http://soundbible.com/1837-Lightning-Bolt-Light-Rain.html
+	 	http://soundbible.com/1835-More-Thunder-2.html
+	 	http://soundbible.com/907-Distant-Thunder.html
+	 	http://soundbible.com/916-Perfect-Thunder-Storm.html
+	 	http://soundbible.com/886-Distant-Thunder-And-Light-Rain.html
+	 	http://soundbible.com/2078-Gun-Battle-Sound.html
+	 	http://soundbible.com/1919-Shotgun-Blast.html
+	 	http://soundbible.com/1807-Explosion-Ultra-Bass.html
+	 	http://soundbible.com/1367-Grenade.html
+	 	http://soundbible.com/1234-Bomb.html
+	 	http://soundbible.com/576-Barrel-Exploding.html
+	 	http://soundbible.com/483-Explosion.html
+	 	http://soundbible.com/1818-Rainforest-Ambience.html
+	 	http://soundbible.com/1991-Sounds-Of-War-V-10.html
+	 	http://soundbible.com/1936-Crisp-Ocean-Waves.html
+	 	http://soundbible.com/1935-Ocean-Waves.html
+	 Castle textures provided by:
+	 	http://slodive.com/freebies/brick-texture/
+	 	http://beemirror.com/freebies/free-brick-texture-designs/
+	 	http://www.bricksntiles.com/community/viewtopic.php?t=107&sid=0a73404b552cc904d44dca6af5d66853
+	 	http://www.turbosquid.com/FullPreview/Index.cfm/ID/728322
 	-->
 </html>

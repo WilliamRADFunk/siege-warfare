@@ -19,7 +19,7 @@
 	
 	function GenerateCannon()
 	{
-		var cylinderTexture = THREE.ImageUtils.loadTexture('../assets/barrel-2.png');
+		var cylinderTexture = THREE.ImageUtils.loadTexture('../assets/textures/guns/barrel-2.png');
 		var cylinderGeometry = new THREE.CylinderGeometry( 2, 2, 20, 32 );
 		var cylinderMaterial = new THREE.MeshLambertMaterial({map: cylinderTexture});
 		var can = new THREE.Mesh( cylinderGeometry, cylinderMaterial );
@@ -43,7 +43,7 @@
 		muzzle.position.y = -13.1;
 		muzzle.rotation.x = Math.PI / 2;
 
-		var wheelTexture = THREE.ImageUtils.loadTexture('../assets/cannon-wheel-rim.png');
+		var wheelTexture = THREE.ImageUtils.loadTexture('../assets/textures/guns/cannon-wheel-rim.png');
 		var wheelGeometry = new THREE.RingGeometry(4, 5, 32, 32, 0, Math.PI * 2);
 		var wheelMaterial = new THREE.MeshLambertMaterial({map: wheelTexture});
 		wheelMaterial.side = THREE.DoubleSide;

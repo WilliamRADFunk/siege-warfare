@@ -1,6 +1,6 @@
 function GenerateCannon()
 {
-	var cylinderTexture = THREE.ImageUtils.loadTexture('assets/barrel-1.jpg');
+	var cylinderTexture = THREE.ImageUtils.loadTexture('assets/textures/guns/barrel-1.jpg');
 	var cylinderGeometry = new THREE.CylinderGeometry( 2, 2, 20, 32 );
 	var cylinderMaterial = new THREE.MeshLambertMaterial({map: cylinderTexture});
 	var can = new THREE.Mesh( cylinderGeometry, cylinderMaterial );
@@ -24,7 +24,7 @@ function GenerateCannon()
 	muzzle.position.y = -13.1;
 	muzzle.rotation.x = Math.PI / 2;
 
-	var wheelTexture = THREE.ImageUtils.loadTexture('assets/cannon-wheel-rim.png');
+	var wheelTexture = THREE.ImageUtils.loadTexture('assets/textures/guns/cannon-wheel-rim.png');
 	var wheelGeometry = new THREE.RingGeometry(4, 5, 32, 32, 0, Math.PI * 2);
 	var wheelMaterial = new THREE.MeshLambertMaterial({map: wheelTexture});
 	wheelMaterial.side = THREE.DoubleSide;
@@ -176,7 +176,7 @@ function GenerateCannonBall(caliber)
 	{
 		ball.addEventListener( 'collision', function( other_object, linear_velocity, angular_velocity )
 		{
-			console.log(other_object.id, " hit something ", this, " at ", angular_velocity, "meters per second.");
+			console.log("A ", this.name, " hit a ", other_object.name, " at ", linear_velocity, "meters per second.");
 			
 			var position = this.position;
 			scene.remove(this);

@@ -11,7 +11,6 @@ var groundplane;
 var cannon;
 var ball;
 var castleTemplate1 = ["5", "000","010","020","030","040","050","100","200","300","400","500","150","250","350","450","550","510","520","530","540"];
-var terrainTemplate = 0;
 var ballList = [];
 var castle = [];
 var caliber = 0;

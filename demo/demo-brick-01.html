@@ -25,7 +25,7 @@
 	
 	function GenerateBrick()
 	{
-		var brickTexture = THREE.ImageUtils.loadTexture('../assets/brick-1.jpg');
+		var brickTexture = THREE.ImageUtils.loadTexture('../assets/textures/materials/brick-1.jpg');
 		var brickGeometry = new THREE.BoxGeometry(10, 10, 10);
 		var brickMaterial = Physijs.createMaterial( new THREE.MeshLambertMaterial({map: brickTexture}), .95, .95 );
 		var brick = new Physijs.SphereMesh( brickGeometry, brickMaterial );
@@ -41,7 +41,7 @@
 		pedestal.position.z = 0;
 		pedestal.rotation.x = Math.PI / 2;
 
-		var platformTexture = THREE.ImageUtils.loadTexture('../assets/barrel-2.png');
+		var platformTexture = THREE.ImageUtils.loadTexture('../assets/textures/guns/barrel-2.png');
 		var platformGeometry = new THREE.CylinderGeometry( 15, 15, 2.5, 64, 64, false );
 		var platformMaterial = new THREE.MeshBasicMaterial({map: platformTexture});
 		var platform = new THREE.Mesh( platformGeometry, platformMaterial );
@@ -75,7 +75,7 @@
 		renderer.setSize( WIDTH, HEIGHT );
 		renderer.shadowMapEnabled = true;
 
-		var floorTexture = THREE.ImageUtils.loadTexture('../assets/felt-1.jpg');
+		var floorTexture = THREE.ImageUtils.loadTexture('../assets/textures/ground/felt-1.jpg');
 		var floorGeometry = new THREE.PlaneGeometry( 1000, 1000, 6 );
 		var floorMaterial = new THREE.MeshBasicMaterial({map: floorTexture});
 		var floor = new THREE.Mesh( floorGeometry, floorMaterial );

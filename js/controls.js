@@ -9,6 +9,8 @@ function KeyPressed()
 		}
 		if( camera == camera2)
 		{
+			cannon_turning_01.play();
+
 			camera.position.x = cannon.position.x;
 			camera.position.y = cannon.position.y;
 			camera.position.z = cannon.position.z + 4;
@@ -26,6 +28,8 @@ function KeyPressed()
 		}
 		if( camera == camera2)
 		{
+			cannon_turning_01.play();
+
 			camera.position.x = cannon.position.x;
 			camera.position.y = cannon.position.y;
 			camera.position.z = cannon.position.z + 4;
@@ -43,6 +47,8 @@ function KeyPressed()
 		}
 		if( camera == camera2)
 		{
+			cannon_turning_01.play();
+
 			camera.position.x = cannon.position.x;
 			camera.position.y = cannon.position.y;
 			camera.position.z = cannon.position.z + 4;
@@ -60,6 +66,8 @@ function KeyPressed()
 		}
 		if( camera == camera2)
 		{
+			cannon_turning_01.play();
+
 			camera.position.x = cannon.position.x;
 			camera.position.y = cannon.position.y;
 			camera.position.z = cannon.position.z + 4;
@@ -102,6 +110,7 @@ function KeyPressed()
 	{
 		if(ballChanged == false)
 		{
+			cannon_ammochange_01.play();
 			caliber = (caliber + 1) % 3;
 			console.log("Ammo Type: ", caliber);
 			ballChanged = true;
@@ -111,11 +120,12 @@ function KeyPressed()
 	{
 		if( lastFired <= 0 )
 		{
+			cannon_fire[Math.floor((Math.random() * 3))].play()
 			// Generate cannon ball
 			ball = GenerateCannonBall(caliber);
 			scene.add( ball );
 			ball.applyCentralImpulse( new THREE.Vector3( 200 * ball.mass, -( Math.PI / 2 - cannon.rotation.z ) * (200 * ball.mass), -cannon.rotation.y * 10000 ) );
-			lastFired = 90;
+			lastFired = 125;
 		}
 	}
 }

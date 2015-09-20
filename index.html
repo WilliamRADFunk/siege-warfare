@@ -34,30 +34,49 @@
 
 	function loadSoundFX()
 	{
-		background_gunfire_01 = new Audio("background-gunfire-01.mp3");
-		background_gunfire_02 = new Audio("background-gunfire-02.mp3");
-		background_gunfire_03 = new Audio("background-gunfire-03.mp3");
-		cannon_fire_01 = new Audio("cannon-fire-01.mp3");
-		cannon_fire_02 = new Audio("cannon-fire-02.mp3");
-		cannon_fire_03 = new Audio("cannon-fire-03.mp3");
-		cannon_fire_04 = new Audio("cannon-fire-04.mp3");
-		collision_explosion_01 = new Audio("collision-explosion-01.mp3");
-		collision_explosion_02 = new Audio("collision-explosion-02.mp3");
-		collision_explosion_03 = new Audio("collision-explosion-03.mp3");
-		collision_explosion_04 = new Audio("collision-explosion-04.mp3");
-		theme_beach_01 = new Audio("theme-beach-01.mp3");
-		theme_beach_02 = new Audio("theme-beach-02.mp3");
-		theme_rainforest_01 = new Audio("theme-rainforest-01.mp3");
-		theme_thunder_01 = new Audio("theme-thunder-01.mp3");
-		theme_thunder_02 = new Audio("theme-thunder-02.mp3");
-		theme_thunder_03 = new Audio("theme-thunder-03.mp3");
-		theme_thunder_04 = new Audio("theme-thunder-04.mp3");
-		theme_thunder_05 = new Audio("theme-thunder-05.mp3");
-		theme_thunder_06 = new Audio("theme-thunder-06.mp3");
+		background_gunfire_01 = new Audio("assets/audio/background-gunfire-01.mp3");
+		background_gunfire_02 = new Audio("assets/audio/background-gunfire-02.mp3");
+		background_gunfire_03 = new Audio("assets/audio/background-gunfire-03.mp3");
+		cannon_fire_01 = new Audio("assets/audio/cannon-fire-01.wav");
+		cannon_fire_02 = new Audio("assets/audio/cannon-fire-02.mp3");
+		cannon_fire_03 = new Audio("assets/audio/cannon-fire-03.mp3");
+		cannon_fire_04 = new Audio("assets/audio/cannon-fire-04.wav");
+		cannon_turning_01 = new Audio("assets/audio/cannon-turning-01.wav");
+		cannon_ammochange_01 = new Audio("assets/audio/cannon-ammochange-01.wav");
+		collision_explosion_01 = new Audio("assets/audio/collision-explosion-01.mp3");
+		collision_explosion_02 = new Audio("assets/audio/collision-explosion-02.mp3");
+		collision_explosion_03 = new Audio("assets/audio/collision-explosion-03.mp3");
+		collision_explosion_04 = new Audio("assets/audio/collision-explosion-04.mp3");
+		theme_beach_01 = new Audio("assets/audio/theme-beach-01.mp3");
+		theme_beach_01.loop = true;
+		theme_beach_02 = new Audio("assets/audio/theme-beach-02.mp3");
+		theme_rainforest_01 = new Audio("assets/audio/theme-rainforest-01.mp3");
+		theme_rainforest_01.loop = true;
+		theme_thunder_01 = new Audio("assets/audio/theme-thunder-01.mp3");
+		theme_thunder_02 = new Audio("assets/audio/theme-thunder-02.mp3");
+		theme_thunder_03 = new Audio("assets/audio/theme-thunder-03.mp3");
+		theme_thunder_04 = new Audio("assets/audio/theme-thunder-04.mp3");
+		theme_thunder_05 = new Audio("assets/audio/theme-thunder-05.mp3");
+		theme_thunder_06 = new Audio("assets/audio/theme-thunder-06.mp3");
+		theme_thunder.push(theme_thunder_01);
+		theme_thunder.push(theme_thunder_02);
+		theme_thunder.push(theme_thunder_03);
+		theme_thunder.push(theme_thunder_04);
+		theme_thunder.push(theme_thunder_05);
+		theme_thunder.push(theme_thunder_06);
+		background_gunfire.push(background_gunfire_01);
+		background_gunfire.push(background_gunfire_01);
+		background_gunfire.push(background_gunfire_01);
+		cannon_fire.push(cannon_fire_01);
+		cannon_fire.push(cannon_fire_02);
+		cannon_fire.push(cannon_fire_03);
+		cannon_fire.push(cannon_fire_04);
 	}
 	
 	function init()
 	{
+		loadSoundFX();
+
 		keyboard = new THREEx.KeyboardState();
 
 		WIDTH = (window.innerWidth) * 0.97;
@@ -104,15 +123,19 @@
 		if(theme == 0)
 		{
 			brickTexture = THREE.ImageUtils.loadTexture('assets/textures/materials/brick-5.jpg');
+			theme_beach_01.autoplay = true;
 		}
 		else if(theme == 1)
 		{
 			brickTexture = THREE.ImageUtils.loadTexture('assets/textures/materials/brick-4.jpg');
+			theme_rainforest_01.autoplay = true;
 		}
 		else
 		{
 			brickTexture = THREE.ImageUtils.loadTexture('assets/textures/materials/brick-2.jpg');
+			theme_thunder[Math.floor((Math.random() * 5))].play();
 		}
+		background_gunfire[Math.floor((Math.random() * 2))].play();
 		
 
 		// Generate a castle
@@ -148,7 +171,7 @@
 		KeyPressed();
 
 		// Makes sure ammo type change happens once per click.
-		if(updateCounter % 45 == 0)
+		if(updateCounter % 55 == 0)
 		{
 			ballChanged = false;
 		}
@@ -177,8 +200,23 @@
 			}
 		}
 
+		// Plays background sounds for theme #3
+		if(updateCounter % 499 == 0)
+		{
+			if(theme == 2)
+			{
+				theme_thunder[Math.floor((Math.random() * 5))].play();
+			}
+		}
+
+		// Plays background sounds for war
+		if(updateCounter % 599 == 0)
+		{
+			background_gunfire[Math.floor((Math.random() * 2))].play();
+		}
+
 		// Removes cannonballs after a reasonable amount of time.
-		if( (updateCounter % 1200 == 0 && ballList.length > 1) || (ballList.length >= 30) )
+		if( (updateCounter % 1199 == 0 && ballList.length > 1) || (ballList.length >= 30) )
 		{
 			console.log("Removing cannonball# ", ballList[0].id);
 			scene.remove(ballList[0]);
@@ -232,6 +270,7 @@
 	 	http://soundbible.com/1991-Sounds-Of-War-V-10.html
 	 	http://soundbible.com/1936-Crisp-Ocean-Waves.html
 	 	http://soundbible.com/1935-Ocean-Waves.html
+	 	http://www.audiomicro.com/free-sound-effects/free-industrial-and-machinery
 	 Castle textures provided by:
 	 	http://slodive.com/freebies/brick-texture/
 	 	http://beemirror.com/freebies/free-brick-texture-designs/

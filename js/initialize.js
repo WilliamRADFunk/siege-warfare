@@ -91,8 +91,8 @@ function init()
 
 	// Load textures
 	ball1Texture = THREE.ImageUtils.loadTexture('assets/textures/guns/cannonball-1.jpg');
-	ball2Texture = THREE.ImageUtils.loadTexture('assets/textures/guns/cannonball-2.jpg');
-	ball3Texture = THREE.ImageUtils.loadTexture('assets/textures/guns/cannonball-3.jpg');
+	ball2Texture = THREE.ImageUtils.loadTexture('assets/textures/guns/cannonball-3.jpg');
+	ball3Texture = THREE.ImageUtils.loadTexture('assets/textures/guns/cannonball-2.jpg');
 
 	if(theme == 0)
 	{
@@ -125,7 +125,13 @@ function init()
 	
 	scene.simulate();
 	
-	document.body.appendChild( renderer.domElement );
-	orbControls = new THREE.OrbitControls( camera3, renderer.domElement );		
+	var container = document.getElementById( 'canvas' );
+	document.body.appendChild( container );
+	container.appendChild( renderer.domElement );
+	orbControls = new THREE.OrbitControls( camera3, renderer.domElement );	
+	document.getElementById( 'slugAmount' ).innerHTML = ammoType1Count;
+	document.getElementById( 'slug' ).style.border = "1px solid #FFFFFF";
+	document.getElementById( 'explosiveAmount' ).innerHTML = ammoType2Count;
+	document.getElementById( 'shrapnelAmount' ).innerHTML = ammoType3Count;	
 	render();
 }

@@ -37,12 +37,15 @@ var theme = 0;
 var cannon;
 var ball;
 var ballList = [];
-var ballChanged = false;
+var ammoType1Count = 50;
+var ammoType2Count = 20;
+var ammoType3Count = 5;
 var caliber = 0;
 var castleTemplate1 = ["5", "000","010","020","030","040","050","100","200","300","400","500","150","250","350","450","550","510","520","530","540"];
 var castle = [];
 var updateCounter = 0;
 var lastFired = 0;
+var timer = 18000;
 
 var brickTexture;
 var ball1Texture;

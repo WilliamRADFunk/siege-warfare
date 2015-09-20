@@ -167,7 +167,7 @@ function GenerateCannonBall(caliber)
 	}
 	else
 	{
-		ballGeometry = new THREE.SphereGeometry( 2, 32, 32, 0, Math.PI * 2, 0, Math.PI * 2 );
+		ballGeometry = new THREE.SphereGeometry( 0.25, 32, 32, 0, Math.PI * 2, 0, Math.PI * 2 );
 		ballMaterial = Physijs.createMaterial( new THREE.MeshLambertMaterial({map: ball3Texture}), 1, 0.05 );
 	}
 	
@@ -178,41 +178,36 @@ function GenerateCannonBall(caliber)
 		ball.addEventListener( 'collision', function( other_object, linear_velocity, angular_velocity )
 		{
 			console.log("A ", this.name, " hit a ", other_object.name, " at ", linear_velocity, "meters per second.");
-			if(other_object.name == 'Brick')
+			var position = this.position;
+			scene.remove(this);
+			ballList.splice(ballList.indexOf(this), 1);
+			for(var i = 0; i < 5; i++)
 			{
-				collision_explosion[Math.floor((Math.random() * 3))].play();
-
-				var position = this.position;
-				scene.remove(this);
-				ballList.splice(ballList.indexOf(this), 1);
-				for(var i = 0; i < 5; i++)
+				ballsGeometry = new THREE.SphereGeometry( 1, 32, 32, 0, Math.PI * 2, 0, Math.PI * 2 );
+				ballsMaterial = Physijs.createMaterial( new THREE.MeshLambertMaterial({map: ball2Texture}), 1, 0.05 );
+				var balls = new Physijs.SphereMesh( ballsGeometry, ballsMaterial, 100 );
+				balls.mass *= 0.25;
+				balls.position.set(position.x + i, position.y - i, position.z);
+				balls.name = "Shrapnel";
+				ballList.push(balls);
+				scene.add(balls);
+				var randomx = Math.floor((Math.random() * 30) + 1);
+				if(randomx % 2 == 0)
 				{
-					ballsGeometry = new THREE.SphereGeometry( 1, 32, 32, 0, Math.PI * 2, 0, Math.PI * 2 );
-					ballsMaterial = Physijs.createMaterial( new THREE.MeshLambertMaterial({map: ball2Texture}), 1, 0.05 );
-					var balls = new Physijs.SphereMesh( ballsGeometry, ballsMaterial, 100 );
-					balls.mass *= 0.25;
-					balls.position.set(position.x + i, position.y - i, position.z);
-					balls.name = "Shrapnel";
-					ballList.push(balls);
-					scene.add(balls);
-					var randomx = Math.floor((Math.random() * 30) + 1);
-					if(randomx % 2 == 0)
-					{
-						randomx = -randomx;
-					}
-					var randomy = Math.floor((Math.random() * 30) + 1);
-					if(randomy % 2 == 0)
-					{
-						randomy = -randomy;
-					}
-					var randomz = Math.floor((Math.random() * 30) + 1);
-					if(randomz % 2 == 0)
-					{
-						randomz = -randomz;
-					}
-					console.log(randomx, " ", randomy, " ", randomz);
-					balls.applyCentralImpulse( new THREE.Vector3( randomx * ball.mass, -randomy * ball.mass, -randomz * ball.mass) );
+					randomx = -randomx;
 				}
+				var randomy = Math.floor((Math.random() * 30) + 1);
+				if(randomy % 2 == 0)
+				{
+					randomy = -randomy;
+				}
+				var randomz = Math.floor((Math.random() * 30) + 1);
+				if(randomz % 2 == 0)
+				{
+					randomz = -randomz;
+				}
+				console.log(randomx, " ", randomy, " ", randomz);
+				balls.applyCentralImpulse( new THREE.Vector3( randomx * ball.mass, -randomy * ball.mass, -randomz * ball.mass) );
 			}
 		});
 	}
@@ -224,4 +219,12 @@ function GenerateCannonBall(caliber)
 	ball.name = "Cannonball";
 	ballList.push(ball);
 	return ball;
+}
+
+function fireCannonball(caliber, scatter)
+{
+	cannon_fire[Math.floor((Math.random() * 3))].play();
+	ball = GenerateCannonBall(caliber);
+	scene.add( ball );
+	ball.applyCentralImpulse( new THREE.Vector3( 200 * ball.mass, -( Math.PI / 2 - cannon.rotation.z ) * (200 * ball.mass), -(scatter * cannon.rotation.y) * 10000 ) );
 }

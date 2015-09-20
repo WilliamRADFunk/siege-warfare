@@ -8,7 +8,7 @@ function GenerateBrick()
 	brick.collisions = 0;
 	brick.addEventListener( 'collision', function( other_object, linear_velocity, angular_velocity )
 	{
-		if( other_object.name == 'Cannonball' && linear_velocity.x >= 0.1 )
+		if( other_object.name == 'Cannonball' && Math.abs(linear_velocity.x) >= 0.3 )
 		{
 			console.log("A ", this.name, " was hit by a ", other_object.name, " at ", linear_velocity.x, "meters per second.");
 			collision_explosion[Math.floor((Math.random() * 3))].play();

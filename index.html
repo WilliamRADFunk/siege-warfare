@@ -1,6 +1,14 @@
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" prefix="og: http://ogp.me/ns#">
 <head>
-	<title>Siege Warfare</title>
+<!-- Background photo: https://www.flickr.com/photos/3_dots/ -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Siege Warfare</title>
+    <!-- Resets all default browser stylings for a clean slate -->
+    <link rel="stylesheet" href="css/reset_author_richard_clark.css">
+    <!-- Styles specific to the Encryptor pages -->
+    <link rel="stylesheet" href="css/styles.css">
 	<!-- WebGL wrapper library -->
 	<script src="js/external/three.js"></script>
 	<!-- Physics Engine -->
@@ -30,7 +38,33 @@
 	<!-- Render loop to update game components -->
 	<script src="js/update.js"></script>
 </head>
-<body><script>window.onload = init;</script></body>
+<body>
+	<div id="canvas">
+		<div id="HUD-left">
+			<div id="slug" class="ammo"><p id="slugAmount">20</p></div>
+			<div id="explosive" class="ammo"><p id="explosiveAmount">10</p></div>
+			<div id="shrapnel" class="ammo"><p id="shrapnelAmount">5</p></div>
+		</div>
+		<div id="HUD-right">
+			<div id="player-cannons" class="score">
+				<h4>Player Cannons</h4>
+				<p>1</p>
+			</div>
+			<div id="enemy-cannons" class="score">
+				<h4>Enemy Targets</h4>
+				<p>1</p>
+			</div>
+		</div>
+		<div id="HUD-timer">
+			<div id="timer-container">
+				<h4>TIMER</h4>
+				<div id="minutes" class="time"></div>
+				<div id="seconds" class="time"></div>
+			</div>
+		</div>
+	</div>
+	<script>window.onload = init;</script>
+</body>
 <!-- Cannon barrel textures provided by:
 		http://www.flickriver.com/photos/steffen-larsen/tags/textures/
 		http://shortformvideo.co.uk/product/texturepak1/

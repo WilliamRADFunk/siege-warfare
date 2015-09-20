@@ -119,25 +119,62 @@ function KeyPressed()
 		camera = camera5;
 		cameraSelected = 5;
 	}
-	else if( keyboard.pressed("ball-change") )
+	else if( keyboard.pressed("ammo1") )
 	{
-		if(ballChanged == false)
-		{
-			cannon_ammochange_01.play();
-			caliber = (caliber + 1) % 3;
-			console.log("Ammo Type: ", caliber);
-			ballChanged = true;
-		}
+		cannon_ammochange_01.play();
+		document.getElementById( 'slug' ).style.border = "1px solid #FFFFFF";
+		document.getElementById( 'explosive' ).style.border = "none";
+		document.getElementById( 'shrapnel' ).style.border = "none";
+		caliber = 0;
+		console.log("Ammo Type: ", caliber);
+	}
+	else if( keyboard.pressed("ammo2") )
+	{
+		cannon_ammochange_01.play();
+		document.getElementById( 'slug' ).style.border = "none";
+		document.getElementById( 'explosive' ).style.border = "1px solid #FFFFFF";
+		document.getElementById( 'shrapnel' ).style.border = "none";
+		caliber = 1;
+		console.log("Ammo Type: ", caliber);
+	}
+	else if( keyboard.pressed("ammo3") )
+	{
+		cannon_ammochange_01.play();
+		document.getElementById( 'slug' ).style.border = "none";
+		document.getElementById( 'explosive' ).style.border = "none";
+		document.getElementById( 'shrapnel' ).style.border = "1px solid #FFFFFF";
+		caliber = 2;
+		console.log("Ammo Type: ", caliber);
 	}
 	else if( keyboard.pressed("space") )
 	{
 		if( lastFired <= 0 )
 		{
-			cannon_fire[Math.floor((Math.random() * 3))].play()
-			// Generate cannon ball
-			ball = GenerateCannonBall(caliber);
-			scene.add( ball );
-			ball.applyCentralImpulse( new THREE.Vector3( 200 * ball.mass, -( Math.PI / 2 - cannon.rotation.z ) * (200 * ball.mass), -cannon.rotation.y * 10000 ) );
+			if( caliber == 0 && ammoType1Count > 0 )
+			{
+				fireCannonball(caliber, 1);
+				ammoType1Count--;
+				document.getElementById( 'slugAmount' ).innerHTML = ammoType1Count;
+			}
+			else if( caliber == 1 && ammoType2Count > 0 )
+			{
+				fireCannonball(caliber, 1);
+				ammoType2Count--;
+				document.getElementById( 'explosiveAmount' ).innerHTML = ammoType2Count;
+			}
+			else if( caliber == 2 && ammoType3Count > 0 )
+			{
+				for( var i = 0; i < 20; i++ )
+				{
+					fireCannonball(caliber, Math.random() * 5 + 1);
+				}
+				ammoType3Count--;
+				document.getElementById( 'shrapnelAmount' ).innerHTML = ammoType3Count;
+			}
+			else
+			{
+				cannon_ammochange_01.play();
+			}
 			lastFired = 125;
 		}
 	}

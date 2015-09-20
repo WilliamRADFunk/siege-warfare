@@ -27,7 +27,7 @@ function GenerateEnemy()
 
 	enemy.addEventListener( 'collision', function( other_object, linear_velocity, angular_velocity )
 	{
-		console.log("A ", other_object.name, " hit a ", this.name, " at ", linear_velocity, "meters per second.");
+		console.log("Removing ", this.name, " # ", this.id, "from the game.");
 		enemyList.splice(enemyList.indexOf(this), 1);
 		scene.remove(this);
 		document.getElementById( 'enemy-targets-count' ).innerHTML = enemyList.length;

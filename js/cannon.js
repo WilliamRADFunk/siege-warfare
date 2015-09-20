@@ -177,7 +177,7 @@ function GenerateCannonBall(caliber)
 		ball.collisions = 0;
 		ball.addEventListener( 'collision', function( other_object, linear_velocity, angular_velocity )
 		{
-			console.log("A ", this.name, " hit a ", other_object.name, " at ", linear_velocity, "meters per second.");
+			console.log("Removing ", this.name, " # ", this.id, "from the game.");
 			var position = this.position;
 			scene.remove(this);
 			ballList.splice(ballList.indexOf(this), 1);

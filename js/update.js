@@ -67,7 +67,7 @@ function render()
 					scene.remove(enemyList[k]);
 					enemyList.splice(k, 1);
 					document.getElementById( 'enemy-targets-count' ).innerHTML = enemyList.length;
-					enemy_killed_01();
+					enemy_killed_01.play();
 				}
 			}
 		}

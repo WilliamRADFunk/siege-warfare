@@ -6,7 +6,23 @@ function render()
 	var minutes = Math.floor(timer / 3600);
 	var seconds = Math.floor( (timer - (minutes * 3600)) / 60 );
 
-	if(minutes > 0 || seconds > 0)
+	if( enemyList.length <= 0 )
+	{
+		document.getElementById( 'minutes' ).innerHTML = "YOU";
+		document.getElementById( 'seconds' ).innerHTML = "WIN";
+		theme_beach_01.pause();
+		theme_rainforest_01.pause();
+		for(var i = 0; i < 4; i++)
+		{
+			theme_thunder[i].pause();
+		}
+		for(var j = 0; j < 3; j++)
+		{
+			background_gunfire[j].pause();
+		}
+		victory.play();
+	}
+	else if( minutes > 0 || seconds > 0 )
 	{
 		// Keeps the counter from getting too large.
 		if(updateCounter > 6000)
@@ -20,7 +36,6 @@ function render()
 		// Removes bricks and cannonballs that are out of bounds.
 		if(updateCounter % 59 == 0)
 		{
-			console.log(minutes, " ", seconds);
 			document.getElementById( 'minutes' ).innerHTML = minutes;
 			document.getElementById( 'seconds' ).innerHTML = seconds;
 
@@ -41,6 +56,17 @@ function render()
 					console.log("Removing cannonball# ", ballList[j].id);
 					scene.remove(ballList[j]);
 					ballList.splice(j, 1);
+				}
+			}
+
+			for( var k = 0; k < enemyList.length; k++ )
+			{
+				if(enemyList[k].position.z < 0 || enemyList[k].position.x > 180)
+				{
+					console.log("Removing cannonball# ", enemyList[k].id);
+					scene.remove(enemyList[k]);
+					enemyList.splice(k, 1);
+					document.getElementById( 'enemy-targets-count' ).innerHTML = enemyList.length;
 				}
 			}
 		}
@@ -75,5 +101,16 @@ function render()
 	{
 		document.getElementById( 'minutes' ).innerHTML = "YOU";
 		document.getElementById( 'seconds' ).innerHTML = "LOSE";
+		theme_beach_01.pause();
+		theme_rainforest_01.pause();
+		for(var i = 0; i < 4; i++)
+		{
+			theme_thunder[i].pause();
+		}
+		for(var j = 0; j < 3; j++)
+		{
+			background_gunfire[j].pause();
+		}
+		defeat.play();
 	}
 }

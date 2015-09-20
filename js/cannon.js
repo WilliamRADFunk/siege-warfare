@@ -206,7 +206,6 @@ function GenerateCannonBall(caliber)
 				{
 					randomz = -randomz;
 				}
-				console.log(randomx, " ", randomy, " ", randomz);
 				balls.applyCentralImpulse( new THREE.Vector3( randomx * ball.mass, -randomy * ball.mass, -randomz * ball.mass) );
 			}
 		});

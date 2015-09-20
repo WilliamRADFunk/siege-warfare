@@ -11,6 +11,10 @@
     <link rel="stylesheet" href="css/styles.css">
 	<!-- WebGL wrapper library -->
 	<script src="js/external/three.js"></script>
+	<!-- Objects Loader -->
+	<script src="js/external/OBJLoader.js"></script>
+	<!-- Materials Loader -->
+	<script src="js/external/MTLLoader.js"></script>
 	<!-- Physics Engine -->
 	<script src="js/external/physi.js"></script>
 	<!-- Tree Generator -->
@@ -59,9 +63,9 @@
 				<h4>Player Cannons</h4>
 				<p>1</p>
 			</div>
-			<div id="enemy-cannons" class="score">
+			<div id="enemy-targets" class="score">
 				<h4>Enemy Targets</h4>
-				<p>1</p>
+				<p id="enemy-targets-count">1</p>
 			</div>
 		</div>
 		<div id="HUD-timer">
@@ -130,6 +134,8 @@
 	 	http://soundbible.com/1935-Ocean-Waves.html
 	 	http://www.audiomicro.com/free-sound-effects/free-industrial-and-machinery
 	 	http://soundbible.com/98-Evil-Yelling.html
+	 	http://www.allmusiclibrary.com/free_sound_effects/victory_fanfare.mp3
+	 	https://freesound.org/people/LittleRobotSoundFactory/sounds/270403/
 	 Castle textures provided by:
 	 	http://slodive.com/freebies/brick-texture/
 	 	http://beemirror.com/freebies/free-brick-texture-designs/

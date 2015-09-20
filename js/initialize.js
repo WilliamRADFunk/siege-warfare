@@ -27,6 +27,8 @@ function loadSoundFX()
 	theme_thunder_04 = new Audio("assets/audio/theme-thunder-04.mp3");
 	theme_thunder_05 = new Audio("assets/audio/theme-thunder-05.mp3");
 	theme_thunder_06 = new Audio("assets/audio/theme-thunder-06.mp3");
+	victory = new Audio("assets/audio/victory.mp3");
+	defeat = new Audio("assets/audio/defeat.wav");
 	theme_thunder.push(theme_thunder_01);
 	theme_thunder.push(theme_thunder_02);
 	theme_thunder.push(theme_thunder_03);
@@ -108,8 +110,7 @@ function init()
 		brickTexture = THREE.ImageUtils.loadTexture('assets/textures/materials/brick-2.jpg');
 		theme_thunder[Math.floor((Math.random() * 5))].play();
 	}
-	background_gunfire[Math.floor((Math.random() * 2))].play();
-	
+	background_gunfire[Math.floor((Math.random() * 2))].play();	
 
 	// Generate a castle
 	castle = CreateCastle(castleTemplate1);
@@ -127,10 +128,11 @@ function init()
 	var container = document.getElementById( 'canvas' );
 	document.body.appendChild( container );
 	container.appendChild( renderer.domElement );
-	orbControls = new THREE.OrbitControls( camera3, renderer.domElement );	
+	//orbControls = new THREE.OrbitControls( camera3, renderer.domElement );	
 	document.getElementById( 'slugAmount' ).innerHTML = ammoType1Count;
 	document.getElementById( 'slug' ).style.border = "1px solid #FFFFFF";
 	document.getElementById( 'explosiveAmount' ).innerHTML = ammoType2Count;
-	document.getElementById( 'shrapnelAmount' ).innerHTML = ammoType3Count;	
+	document.getElementById( 'shrapnelAmount' ).innerHTML = ammoType3Count;
+	document.getElementById( 'enemy-targets-count' ).innerHTML = enemyList.length;	
 	render();
 }

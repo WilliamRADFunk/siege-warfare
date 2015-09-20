@@ -18,6 +18,23 @@ function GenerateBrick()
 	return brick;
 }
 
+function GenerateEnemy()
+{
+	var enemyGeometry = new THREE.BoxGeometry(10, 10, 10);
+	var enemyMaterial = Physijs.createMaterial( new THREE.MeshBasicMaterial({color: 'red'}), .95, .95 );
+	var enemy = new Physijs.BoxMesh( enemyGeometry, enemyMaterial );
+	enemy.name = "Enemy";
+
+	enemy.addEventListener( 'collision', function( other_object, linear_velocity, angular_velocity )
+	{
+		console.log("A ", other_object.name, " hit a ", this.name, " at ", linear_velocity, "meters per second.");
+		enemyList.splice(enemyList.indexOf(this), 1);
+		scene.remove(this);
+		document.getElementById( 'enemy-targets-count' ).innerHTML = enemyList.length;
+	});
+	return enemy;
+}
+
 function CreateCastle(buildString)
 {
 	if(buildString == null || buildString == "")
@@ -93,6 +110,10 @@ function CreateCastle(buildString)
 				scene.add(brick);
 			}
 		}
+		var enemy = GenerateEnemy();
+		enemy.position.set(0, -50, 5);
+		enemyList.push(enemy);
+		scene.add(enemy);
 	}
 
 	return castle;

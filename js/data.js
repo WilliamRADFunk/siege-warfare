@@ -18,6 +18,8 @@ var background_gunfire_01,
 	theme_thunder_04,
 	theme_thunder_05,
 	theme_thunder_06,
+	victory,
+	defeat,
 	theme_thunder = [];
 	background_gunfire = [],
 	cannon_fire = [],
@@ -42,6 +44,7 @@ var ammoType3Count = 5;
 var caliber = 0;
 var castleTemplate1 = ["5", "0000","0010","0020","0030","0040","0050","0100","0200","0300","0400","0500","0150","0250","0350","0450","0550","0510","0520","0530","0540"];
 var castle = [];
+var enemyList = [];
 var updateCounter = 0;
 var lastFired = 0;
 var timer = 18000;

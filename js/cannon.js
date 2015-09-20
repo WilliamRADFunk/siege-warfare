@@ -174,6 +174,7 @@ function GenerateCannonBall(caliber)
 	ball = new Physijs.SphereMesh( ballGeometry, ballMaterial, 100 );
 	if(caliber == 1)
 	{
+		ball.collisions = 0;
 		ball.addEventListener( 'collision', function( other_object, linear_velocity, angular_velocity )
 		{
 			console.log("A ", this.name, " hit a ", other_object.name, " at ", linear_velocity, "meters per second.");

@@ -26,6 +26,7 @@ var background_gunfire_01,
 var camera,
 	camera1,
 	camera2,
+	camera2FirstUse = true,
 	camera3,
 	cameraSelected = 1;
 var scene;

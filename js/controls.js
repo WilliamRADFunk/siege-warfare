@@ -94,7 +94,15 @@ function KeyPressed()
 		camera.position.z = cannon.position.z + 4;
 
 		camera.lookAt( new THREE.Vector3( cannon.position.x + 17, (cannon.rotation.z - (Math.PI / 2)) * 17, cannon.position.z + (17 * Math.tan(Math.abs(cannon.rotation.y))) + 3 ) );
-		camera.rotation.x += Math.PI / 2;
+		if(camera2FirstUse == true)
+		{
+			camera.rotation.x += Math.PI / 2;
+			camera2FirstUse = false;
+		}
+		else
+		{
+			camera.up = new THREE.Vector3(0, 0, 1);
+		}
 	}
 	else if( cameraSelected != 3 && keyboard.pressed("camera-three") )
 	{
@@ -105,6 +113,11 @@ function KeyPressed()
 	{
 		camera = camera4;
 		cameraSelected = 4;
+	}
+	else if( cameraSelected != 5 && keyboard.pressed("camera-five") )
+	{
+		camera = camera5;
+		cameraSelected = 5;
 	}
 	else if( keyboard.pressed("ball-change") )
 	{

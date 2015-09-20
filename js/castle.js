@@ -5,6 +5,7 @@ function GenerateBrick()
 	var brick = new Physijs.BoxMesh( brickGeometry, brickMaterial );
 	brick.mass *= 0.50;
 
+	brick.collisions = 0;
 	brick.addEventListener( 'collision', function( other_object, linear_velocity, angular_velocity )
 	{
 		if( other_object.name == 'Cannonball' && linear_velocity.x >= 0.1 )

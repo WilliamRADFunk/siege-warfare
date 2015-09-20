@@ -92,7 +92,8 @@ THREEx.KeyboardState.ALIAS	= {
 	'camera-one'    : 49,
 	'camera-two'    : 50,
 	'camera-three'  : 51,
-	'camera-four'  : 52
+	'camera-four'   : 52,
+	'camera-five'   : 53
 };
 
 /**

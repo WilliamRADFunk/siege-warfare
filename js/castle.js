@@ -31,6 +31,7 @@ function GenerateEnemy()
 		enemyList.splice(enemyList.indexOf(this), 1);
 		scene.remove(this);
 		document.getElementById( 'enemy-targets-count' ).innerHTML = enemyList.length;
+		enemy_killed_01.play();
 	});
 	return enemy;
 }

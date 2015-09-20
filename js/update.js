@@ -63,10 +63,11 @@ function render()
 			{
 				if(enemyList[k].position.z < 0 || enemyList[k].position.x > 180)
 				{
-					console.log("Removing cannonball# ", enemyList[k].id);
+					console.log("Removing enemy# ", enemyList[k].id);
 					scene.remove(enemyList[k]);
 					enemyList.splice(k, 1);
 					document.getElementById( 'enemy-targets-count' ).innerHTML = enemyList.length;
+					enemy_killed_01();
 				}
 			}
 		}

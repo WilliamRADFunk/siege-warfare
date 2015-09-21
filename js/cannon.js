@@ -179,8 +179,9 @@ function GenerateCannonBall(caliber)
 		{
 			console.log("Removing ", this.name, " # ", this.id, "from the game.");
 			var position = this.position;
-			scene.remove(this);
 			ballList.splice(ballList.indexOf(this), 1);
+			scene.remove(this);
+			
 			for(var i = 0; i < 5; i++)
 			{
 				ballsGeometry = new THREE.SphereGeometry( 1, 32, 32, 0, Math.PI * 2, 0, Math.PI * 2 );

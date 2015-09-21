@@ -94,6 +94,7 @@ function init()
 	ball1Texture = THREE.ImageUtils.loadTexture('assets/textures/guns/cannonball-1.jpg');
 	ball2Texture = THREE.ImageUtils.loadTexture('assets/textures/guns/cannonball-3.jpg');
 	ball3Texture = THREE.ImageUtils.loadTexture('assets/textures/guns/cannonball-2.jpg');
+	blockTexture = THREE.ImageUtils.loadTexture('assets/textures/materials/brick-1.jpg');
 
 	if(theme == 0)
 	{
@@ -113,7 +114,15 @@ function init()
 	background_gunfire[Math.floor((Math.random() * 2))].play();	
 
 	// Generate a castle
-	castle = CreateCastle(castleTemplate1);
+	var coords = Math.floor(Math.random() * 2);
+	CreateCastle(1, coords);
+
+	coords = Math.floor(Math.random() * 2);
+	CreateCastle(0, coords);
+
+	CreateCastle(0, -1);
+
+	CreateCastle(1, -1);
 
     var directionalLight = new THREE.DirectionalLight( 0xffffff );
     directionalLight.position.set( 0, -30, 150 );

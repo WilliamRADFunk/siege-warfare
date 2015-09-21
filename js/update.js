@@ -33,15 +33,20 @@ function render()
 		// Listens for a keyboard key press.
 		KeyPressed();
 
-		// Removes bricks and cannonballs that are out of bounds.
+		// Keeps track of the time.
 		if(updateCounter % 59 == 0)
 		{
 			document.getElementById( 'minutes' ).innerHTML = minutes;
 			document.getElementById( 'seconds' ).innerHTML = seconds;
+		}
 
+		// Removes bricks and cannonballs that are out of bounds.
+		if(updateCounter % 119 == 0)
+		{
 			for( var i = 0; i < castle.length; i++ )
 			{
-				if(castle[i].position.z < 0 || castle[i].position.x > 180)
+				if( castle[i].position.z < 0 || castle[i].position.x > 200 ||
+					castle[i].position.y > 200 || castle[i].position.y < -200 )
 				{
 					console.log("Removing brick# ", castle[i].id);
 					scene.remove(castle[i]);
@@ -51,7 +56,8 @@ function render()
 
 			for( var j = 0; j < ballList.length; j++ )
 			{
-				if(ballList[j].position.z < 0 || ballList[j].position.x > 180)
+				if( ballList[j].position.z < 0 || ballList[j].position.x > 200 ||
+					ballList[j].position.y > 200 || ballList[j].position.y < -200 )
 				{
 					console.log("Removing cannonball# ", ballList[j].id);
 					scene.remove(ballList[j]);
@@ -61,13 +67,14 @@ function render()
 
 			for( var k = 0; k < enemyList.length; k++ )
 			{
-				if(enemyList[k].position.z < 0 || enemyList[k].position.x > 180)
+				if( enemyList[k].position.z < 0 || enemyList[k].position.x > 200 ||
+					enemyList[k].position.y > 200 || enemyList[k].position.y < -200 )
 				{
 					console.log("Removing enemy# ", enemyList[k].id);
-					scene.remove(enemyList[k]);
-					enemyList.splice(k, 1);
 					document.getElementById( 'enemy-targets-count' ).innerHTML = enemyList.length;
 					enemy_killed_01.play();
+					scene.remove(enemyList[k]);
+					enemyList.splice(k, 1);
 				}
 			}
 		}

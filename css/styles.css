@@ -15,6 +15,12 @@ h4
 	position: relative;
 	width: 97%;
 }
+#explosiveAmount,
+#shrapnelAmount,
+#slugAmount
+{
+	padding-top: 90%;
+}
 #HUD-left,
 #HUD-right,
 #HUD-timer,
@@ -51,8 +57,8 @@ h4
 	left: 3%;
 	width: 10%;
 }
-#timer-container,
-#legend-container
+#legend-container,
+#timer-container
 {
 	height: 95%;
 	padding-top: 5%;
@@ -69,6 +75,27 @@ h4
 	padding-left: 10%;
 	text-align: left;
 }
+#explosive,
+#shrapnel,
+#slug
+{
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 50% 30%;
+	display: block;
+}
+#explosive
+{
+	background-image: url("../assets/images/cannonball-02.png");
+}
+#shrapnel
+{
+	background-image: url("../assets/images/cannonball-03.png");
+}
+#slug
+{
+	background-image: url("../assets/images/cannonball-01.png");
+}
 .ammo
 {
 	display: block;
@@ -77,12 +104,6 @@ h4
 	height: 98%;
 	text-align: center;
 	width: 32%;
-}
-#slugAmount,
-#explosiveAmount,
-#shrapnelAmount
-{
-	padding-top: 90%;
 }
 .score
 {

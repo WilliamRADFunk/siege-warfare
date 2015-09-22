@@ -2,7 +2,7 @@ function KeyPressed()
 {
 	if( keyboard.pressed("left1") || keyboard.pressed("left2"))
 	{
-		cannon.rotation.z += 0.02;
+		cannon.rotation.z += 0.01;
 		if( cannon.rotation.z > (120 * (Math.PI / 180)) )
 		{
 			cannon.rotation.z = (119.999 * (Math.PI / 180));
@@ -21,7 +21,7 @@ function KeyPressed()
 	}
 	else if( keyboard.pressed("right1") || keyboard.pressed("right2"))
 	{
-		cannon.rotation.z -= 0.02;
+		cannon.rotation.z -= 0.01;
 		if( cannon.rotation.z < (60 * (Math.PI / 180)) )
 		{
 			cannon.rotation.z = (60.001 * (Math.PI / 180));
@@ -40,7 +40,7 @@ function KeyPressed()
 	}
 	else if( keyboard.pressed("up1") || keyboard.pressed("up2"))
 	{
-		cannon.rotation.y -= 0.02;
+		cannon.rotation.y -= 0.01;
 		if( cannon.rotation.y < -(30 * (Math.PI / 180)) )
 		{
 			cannon.rotation.y = -(29.999 * (Math.PI / 180));
@@ -59,7 +59,7 @@ function KeyPressed()
 	}	
 	else if( keyboard.pressed("down1") || keyboard.pressed("down2"))
 	{
-		cannon.rotation.y += 0.02;
+		cannon.rotation.y += 0.01;
 		if( cannon.rotation.y > 0 )
 		{
 			cannon.rotation.y = 0.001;

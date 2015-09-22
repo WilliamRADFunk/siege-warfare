@@ -172,6 +172,10 @@ function GenerateCannonBall(caliber)
 	}
 	
 	ball = new Physijs.SphereMesh( ballGeometry, ballMaterial, 100 );
+	if(caliber == 0)
+	{
+		ball.mass *= 4;
+	}
 	if(caliber == 1)
 	{
 		ball.collisions = 0;

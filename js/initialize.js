@@ -61,7 +61,7 @@ function init()
 	scene.setGravity(new THREE.Vector3( 0, 0, -30 ));
 	scene.addEventListener('update', function() 
 	{
-		scene.simulate( undefined, 1 );
+		scene.simulate( undefined, 2 );
 	});
 
 	// Generate cameras

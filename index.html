@@ -10,37 +10,33 @@
     <!-- Styles specific to the Encryptor pages -->
     <link rel="stylesheet" href="css/styles.css">
 	<!-- WebGL wrapper library -->
-	<script src="js/external/three.js"></script>
-	<!-- Objects Loader -->
-	<script src="js/external/OBJLoader.js"></script>
-	<!-- Materials Loader -->
-	<script src="js/external/MTLLoader.js"></script>
+	<script type="text/javascript" src="js/external/three.js"></script>
 	<!-- Physics Engine -->
-	<script src="js/external/physi.js"></script>
-	<!-- Tree Generator -->
-	<script src="js/external/proctree.js"></script>
+	<script type="text/javascript" src="js/external/physi.js"></script>
 	<!-- Allows for keyboard listeners -->
-	<script src="js/external/threex.keyboardstate.js"></script>
-	<!-- Gives user ability to manipulate camera angle -->
-	<script src="js/external/OrbitControls.js"></script>
-	<!-- Font used to make scoreboard label, and score -->
-	<script src='fonts/helvetiker_regular.typeface.js'></script>
+	<script type="text/javascript" src="js/external/threex.keyboardstate.js"></script>
+	<!-- Help Menu -->
+	<script type="text/javascript" src="js/external/dat.gui.min.js"></script>
 	<!-- Global variables -->
-	<script src="js/data.js"></script>
+	<script type="text/javascript" src="js/data.js"></script>
 	<!-- Setting up the game -->
-	<script src="js/initialize.js"></script>
+	<script type="text/javascript" src="js/initialize.js"></script>
 	<!-- Generates cameras -->
-	<script src="js/camera.js"></script>
+	<script type="text/javascript" src="js/camera.js"></script>
 	<!-- Generates terrain -->
-	<script src="js/cannon.js"></script>
+	<script type="text/javascript" src="js/cannon.js"></script>
 	<!-- Generates terrain -->
-	<script src="js/terrain.js"></script>
+	<script type="text/javascript" src="js/terrain.js"></script>
 	<!-- Generates castles -->
-	<script src="js/castle.js"></script>
+	<script type="text/javascript" src="js/castle.js"></script>
 	<!-- Allows for keyboard listeners -->
-	<script src="js/controls.js"></script>
+	<script type="text/javascript" src="js/controls.js"></script>
 	<!-- Render loop to update game components -->
-	<script src="js/update.js"></script>
+	<script type="text/javascript" src="js/update.js"></script>
+	<script type="text/javascript">
+		Physijs.scripts.worker = 'js/external/physijs_worker.js';
+		Physijs.scripts.ammo = 'ammo.js';
+	</script>
 </head>
 <body>
 	<div id="canvas">
@@ -74,20 +70,23 @@
 				<div id="minutes" class="time"></div>
 				<div id="seconds" class="time"></div>
 			</div>
+			<div id="cannon-reload">
+				<span id="msg">Ready To Fire!</span><div id="fire-bar"></div>
+			</div>
 		</div>
 		<div id="HUD-legend">
 			<div id="legend-container">
 				<h4>KEYS</h4>
-				<p>LEFT ------- A, left</p>
-				<p>RIGHT ----- D, right</p>
-				<p>UP ---------- W, up</p>
-				<p>DOWN ----- S, down</p>
-				<p>FIRE -------- space</p>
-				<p>CAM VIEW #1 --- 1</p>
-				<p>CAM VIEW #2 --- 2</p>
-				<p>CAM VIEW #3 --- 3</p>
-				<p>CAM VIEW #4 --- 4</p>
-				<p>CAM VIEW #5 --- 5</p>
+				<p>LEFT --- A, left</p>
+				<p>RIGHT --- D, right</p>
+				<p>UP --- W, up</p>
+				<p>DOWN --- S, down</p>
+				<p>FIRE --- space</p>
+				<p id="cam1">VIEW #1 --- 1</p>
+				<p id="cam2">VIEW #2 --- 2</p>
+				<p id="cam3">VIEW #3 --- 3</p>
+				<p id="cam4">VIEW #4 --- 4</p>
+				<p id="cam5">VIEW #5 --- 5</p>
 			</div>
 		</div>
 	</div>

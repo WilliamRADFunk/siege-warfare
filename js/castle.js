@@ -8,13 +8,18 @@ function GenerateBrick()
 	brick.collisions = 0;
 	brick.addEventListener( 'collision', function( other_object, linear_velocity, angular_velocity )
 	{
-		if( other_object.name == 'Cannonball' && Math.abs(linear_velocity.x) >= 2.5 )
+		if( other_object.name == 'Ground' && Math.abs(linear_velocity.x) >= 2.5 )
 		{
-			console.log("A ", this.name, " was hit by a ", other_object.name, " at ", linear_velocity.x, "meters per second.");
+			console.log("A ", brick.name, " was hit by the ", other_object.name, " at ", linear_velocity.x, "meters per second.");
+			brick.removeEventListener( 'collision', false );
+			setTimeout( function() {
+				console.log("Removing " + brick.name);
+				castle.splice(castle.indexOf(brick), 1);
+				scene.remove(brick);
+			}, 10000);
 			collision_explosion[Math.floor((Math.random() * 3))].play();
 		}
 	});
-
 	return brick;
 }
 
@@ -25,14 +30,20 @@ function GenerateEnemy()
 	var enemy = new Physijs.BoxMesh( enemyGeometry, enemyMaterial );
 	enemy.name = "Enemy";
 
+	enemy.collisions = 0;
 	enemy.addEventListener( 'collision', function( other_object, linear_velocity, angular_velocity )
 	{
-		if( (Math.abs(linear_velocity.x) >= 2) || (Math.abs(linear_velocity.y) >= 2) || (Math.abs(linear_velocity.z) >= 2) )
+		console.log("Enemy " + enemy.id + " was hit at " + linear_velocity.x + ", " + linear_velocity.y + ", " + linear_velocity.z);
+		if( (Math.abs(linear_velocity.x) >= 0.1) || (Math.abs(linear_velocity.y) >= 0.1) || (Math.abs(linear_velocity.z) >= 0.1) )
 		{
-			console.log("Collision by ", other_object.name, ": Removing ", this.name, " # ", this.id, "from the game.");
-			enemyList.splice(enemyList.indexOf(this), 1);
-			scene.remove(this);
-			document.getElementById( 'enemy-targets-count' ).innerHTML = enemyList.length;
+			console.log("Bang!!!");
+			console.log("Collision by ", other_object.name, ": Removing ", enemy.name, " # ", enemy.id, "from the game.");			
+			enemy.removeEventListener( 'collision', false );
+			setTimeout( function() {
+				enemyList.splice(enemyList.indexOf(enemy), 1);
+				scene.remove(enemy);
+				document.getElementById( 'enemy-targets-count' ).innerHTML = enemyList.length;
+			}, 0);
 			enemy_killed_01.play();
 		}
 	});

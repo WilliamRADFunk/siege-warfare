@@ -1,5 +1,5 @@
-Physijs.scripts.worker = 'js/external/physijs_worker.js';
-Physijs.scripts.ammo = 'ammo.js';
+//Physijs.scripts.worker = 'js/external/physijs_worker.js';
+//Physijs.scripts.ammo = 'ammo.js';
 
 function loadSoundFX()
 {
@@ -116,14 +116,14 @@ function init()
 	// Generate a castle
 	var coords = Math.floor(Math.random() * 2);
 	CreateCastle(1, coords);
-
+	/*
 	coords = Math.floor(Math.random() * 2);
 	CreateCastle(0, coords);
 
 	CreateCastle(0, -1);
 
 	CreateCastle(1, -1);
-
+	*/
     var directionalLight = new THREE.DirectionalLight( 0xffffff );
     directionalLight.position.set( 0, -30, 150 );
     directionalLight.shadowCameraNear = 1;
@@ -137,11 +137,11 @@ function init()
 	var container = document.getElementById( 'canvas' );
 	document.body.appendChild( container );
 	container.appendChild( renderer.domElement );
-	//orbControls = new THREE.OrbitControls( camera3, renderer.domElement );	
 	document.getElementById( 'slugAmount' ).innerHTML = ammoType1Count;
 	document.getElementById( 'slug' ).style.border = "1px solid #FFFFFF";
 	document.getElementById( 'explosiveAmount' ).innerHTML = ammoType2Count;
 	document.getElementById( 'shrapnelAmount' ).innerHTML = ammoType3Count;
-	document.getElementById( 'enemy-targets-count' ).innerHTML = enemyList.length;	
+	document.getElementById( 'enemy-targets-count' ).innerHTML = enemyList.length;
+	document.getElementById( 'cam1' ).style.border = "1px solid #FFFFFF";
 	render();
 }

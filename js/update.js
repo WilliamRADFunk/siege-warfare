@@ -30,6 +30,12 @@ function render()
 			updateCounter = 0;
 		}
 
+		if(lastFired > 0)
+		{
+			var progressBarWidth = (lastFired / 125) * 100;
+			document.getElementById( 'fire-bar' ).style.width = progressBarWidth + "%";
+		}
+
 		// Listens for a keyboard key press.
 		KeyPressed();
 
@@ -38,6 +44,10 @@ function render()
 		{
 			document.getElementById( 'minutes' ).innerHTML = minutes;
 			document.getElementById( 'seconds' ).innerHTML = seconds;
+			if(lastFired <= 0)
+			{
+				document.getElementById( 'msg' ).innerHTML = "Ready To Fire!";
+			}
 		}
 
 		// Removes bricks and cannonballs that are out of bounds.
@@ -71,10 +81,10 @@ function render()
 					enemyList[k].position.y > 200 || enemyList[k].position.y < -200 )
 				{
 					console.log("Removing enemy# ", enemyList[k].id);
-					document.getElementById( 'enemy-targets-count' ).innerHTML = enemyList.length;
-					enemy_killed_01.play();
 					scene.remove(enemyList[k]);
 					enemyList.splice(k, 1);
+					document.getElementById( 'enemy-targets-count' ).innerHTML = enemyList.length;
+					enemy_killed_01.play();
 				}
 			}
 		}

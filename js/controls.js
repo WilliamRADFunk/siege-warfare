@@ -3,9 +3,9 @@ function KeyPressed()
 	if( keyboard.pressed("left1") || keyboard.pressed("left2"))
 	{
 		cannon.rotation.z += 0.01;
-		if( cannon.rotation.z > (120 * (Math.PI / 180)) )
+		if( cannon.rotation.z > (140 * (Math.PI / 180)) )
 		{
-			cannon.rotation.z = (119.999 * (Math.PI / 180));
+			cannon.rotation.z = (139.999 * (Math.PI / 180));
 		}
 		if( camera == camera2)
 		{
@@ -22,9 +22,9 @@ function KeyPressed()
 	else if( keyboard.pressed("right1") || keyboard.pressed("right2"))
 	{
 		cannon.rotation.z -= 0.01;
-		if( cannon.rotation.z < (60 * (Math.PI / 180)) )
+		if( cannon.rotation.z < (40 * (Math.PI / 180)) )
 		{
-			cannon.rotation.z = (60.001 * (Math.PI / 180));
+			cannon.rotation.z = (40.001 * (Math.PI / 180));
 		}
 		if( camera == camera2)
 		{
@@ -80,11 +80,22 @@ function KeyPressed()
 	{
 		camera = camera1
 		cameraSelected = 1;
+		document.getElementById( 'cam1' ).style.border = "1px solid #FFFFFF";
+		document.getElementById( 'cam2' ).style.border = "none";
+		document.getElementById( 'cam3' ).style.border = "none";
+		document.getElementById( 'cam4' ).style.border = "none";
+		document.getElementById( 'cam5' ).style.border = "none";
 	}
 	else if( cameraSelected != 2 && keyboard.pressed("camera-two") )
 	{
 		camera = camera2
 		cameraSelected = 2;
+
+		document.getElementById( 'cam1' ).style.border = "none";
+		document.getElementById( 'cam2' ).style.border = "1px solid #FFFFFF";
+		document.getElementById( 'cam3' ).style.border = "none";
+		document.getElementById( 'cam4' ).style.border = "none";
+		document.getElementById( 'cam5' ).style.border = "none";
 
 		cannon.rotation.z = Math.PI / 2;
 		cannon.rotation.y = 0;
@@ -108,16 +119,34 @@ function KeyPressed()
 	{
 		camera = camera3;
 		cameraSelected = 3;
+
+		document.getElementById( 'cam1' ).style.border = "none";
+		document.getElementById( 'cam2' ).style.border = "none";
+		document.getElementById( 'cam3' ).style.border = "1px solid #FFFFFF";
+		document.getElementById( 'cam4' ).style.border = "none";
+		document.getElementById( 'cam5' ).style.border = "none";
 	}
 	else if( cameraSelected != 4 && keyboard.pressed("camera-four") )
 	{
 		camera = camera4;
 		cameraSelected = 4;
+
+		document.getElementById( 'cam1' ).style.border = "none";
+		document.getElementById( 'cam2' ).style.border = "none";
+		document.getElementById( 'cam3' ).style.border = "none";
+		document.getElementById( 'cam4' ).style.border = "1px solid #FFFFFF";
+		document.getElementById( 'cam5' ).style.border = "none";
 	}
 	else if( cameraSelected != 5 && keyboard.pressed("camera-five") )
 	{
 		camera = camera5;
 		cameraSelected = 5;
+
+		document.getElementById( 'cam1' ).style.border = "none";
+		document.getElementById( 'cam2' ).style.border = "none";
+		document.getElementById( 'cam3' ).style.border = "none";
+		document.getElementById( 'cam4' ).style.border = "none";
+		document.getElementById( 'cam5' ).style.border = "1px solid #FFFFFF";
 	}
 	else if( keyboard.pressed("ammo1") )
 	{
@@ -180,6 +209,7 @@ function KeyPressed()
 				cannon_ammochange_01.play();
 			}
 			lastFired = 125;
+			document.getElementById( 'msg' ).innerHTML = "Reloading";
 		}
 	}
 }

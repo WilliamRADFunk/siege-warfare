@@ -15,6 +15,13 @@ h4
 	position: relative;
 	width: 97%;
 }
+#fire-bar
+{
+	background-color: #0000FF;
+	height: 35%;
+	min-height: 5px;
+	width: 0px;
+}
 #explosiveAmount,
 #shrapnelAmount,
 #slugAmount
@@ -60,7 +67,7 @@ h4
 #legend-container,
 #timer-container
 {
-	height: 95%;
+	height: 60%;
 	padding-top: 5%;
 }
 #legend-container h4

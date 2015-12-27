@@ -181,10 +181,11 @@ function GenerateCannonBall(caliber)
 		ball.collisions = 0;
 		ball.addEventListener( 'collision', function( other_object, linear_velocity, angular_velocity )
 		{
-			console.log("Removing ", this.name, " # ", this.id, "from the game.");
-			var position = this.position;
-			ballList.splice(ballList.indexOf(this), 1);
-			scene.remove(this);
+			console.log("Removing ", ball.name, " # ", ball.id, "from the game.");
+			var position = ball.position;
+			var mass = ball.mass;
+			ballList.splice(ballList.indexOf(ball), 1);
+			scene.remove(ball);
 			
 			for(var i = 0; i < 5; i++)
 			{
@@ -211,7 +212,7 @@ function GenerateCannonBall(caliber)
 				{
 					randomz = -randomz;
 				}
-				balls.applyCentralImpulse( new THREE.Vector3( randomx * ball.mass, -randomy * ball.mass, -randomz * ball.mass) );
+				balls.applyCentralImpulse( new THREE.Vector3( randomx * mass, -randomy * mass, -randomz * mass) );
 			}
 		});
 	}

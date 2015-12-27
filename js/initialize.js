@@ -47,15 +47,132 @@ function loadSoundFX()
 	collision_explosion.push(collision_explosion_03);
 	collision_explosion.push(collision_explosion_04);
 }
+function launchGame(theme)
+{
+	init(theme);
+	document.getElementById( 'loadup-modal' ).style.display = "none";
+	document.getElementById( 'canvas' ).style.display = "block";
+	document.getElementById( 'HUD-left' ).style.display = "block";
+	document.getElementById( 'HUD-right' ).style.display = "block";
+	document.getElementById( 'HUD-timer' ).style.display = "block";
+	document.getElementById( 'HUD-legend' ).style.display = "block";
+}
+function onDocumentMouseDown( event )
+{
+	event.preventDefault();
+	document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+	document.addEventListener( 'mouseup', onDocumentMouseUp, false );
+}
+function onDocumentMouseMove( event )
+{
+	var mouseXBefore = mouseX;
+	var mouseYBefore = mouseY;
+	mouseX = event.clientX + (WIDTH / 2);
+	var posOrNegX = (mouseX > mouseXBefore) ? 1 : -1;
+	mouseY = event.clientY + (HEIGHT / 2);
+	var posOrNegY = (mouseY > mouseYBefore) ? 1 : -1;
+	if( posOrNegX < 0 )
+	{
+		turningLeft();
+	}
+	else if( posOrNegX >= 0 )
+	{
+		turningRight();
+	}
+	if( posOrNegY < 0 )
+	{
+		turningUp();
+	}
+	else if( posOrNegY >= 0 )
+	{
+		turningDown();
+	}
+}
+function onDocumentMouseUp( event )
+{
+	document.removeEventListener( 'mousemove', onDocumentMouseMove, false );
+	document.removeEventListener( 'mouseup', onDocumentMouseUp, false );
+}
+function onDocumentTouchStart( event )
+{
+	if ( event.touches.length === 1 )
+	{
+		event.preventDefault();
 
-function init()
+		var slug = document.getElementById( 'slug' );
+		var explosive = document.getElementById( ' explosive' );
+		var slug = document.getElementById( 'shrapnel' );
+		var cam1 = document.getElementById( 'cam1' );
+		var cam2 = document.getElementById( 'cam2' );
+		var cam3 = document.getElementById( 'cam3' );
+		var cam4 = document.getElementById( 'cam4' );
+		var cam5 = document.getElementById( 'cam5' );
+		var clickX = event.touches[ 0 ].pageX;
+		var clickY = event.touches[ 0 ].pageY;
+		console.log("X: " + clickX + " /// Y: " + clickY);
+		console.log("slug.offsetLeft: " + slug.offsetLeft);
+		console.log("slug.offsetLeft + slug.offsetWidth = " + (slug.offsetLeft + slug.offsetWidth));
+		console.log("slug.offsetTop: " + slug.offsetTop);
+		console.log("slug.offsetTop + slug.offsetHeight = " + (slug.offsetTop + slug.offsetHeight));
+		if(	clickX >= slug.offsetLeft && clickX <= (slug.offsetLeft + slug.offsetWidth) &&
+			clickY >= slug.offsetTop && clickY <= (slug.offsetTop + slug.offsetHeight) )
+		{
+			console.log("Inside slug");
+		}
+		else
+		{
+			timeStampStart = Date.now();
+		}
+	}
+}
+function onDocumentTouchEnd( event )
+{
+	if ( event.touches.length === 1 )
+	{
+		event.preventDefault();
+	}
+	timeStampEnd = Date.now();
+	if(timeStampEnd - timeStampStart <= 200)
+	{
+		fire();
+	}
+	timeStampStart = 0;
+	timeStampEnd = 0;
+}
+function onDocumentTouchMove( event )
+{
+	var mouseXBefore = mouseX;
+	var mouseYBefore = mouseY;
+	event.preventDefault();
+	mouseX = event.touches[ 0 ].pageX;
+	var posOrNegX = (mouseX > mouseXBefore) ? 1 : -1;
+	mouseY = event.touches[ 0 ].pageY;
+	var posOrNegY = (mouseY > mouseYBefore) ? 1 : -1;
+	if( event.touches.length === 1 && posOrNegX < 0 )
+	{
+		turningLeft();
+	}
+	else if( event.touches.length === 1 && posOrNegX >= 0 )
+	{
+		turningRight();
+	}
+	if( event.touches.length === 1 && posOrNegY < 0 )
+	{
+		turningUp();
+	}
+	else if( event.touches.length === 1 && posOrNegY >= 0 )
+	{
+		turningDown();
+	}
+}
+function init(theme)
 {
 	loadSoundFX();
 
 	keyboard = new THREEx.KeyboardState();
 
-	WIDTH = (window.innerWidth) * 0.97;
-	HEIGHT = (window.innerHeight) * 0.97;
+	WIDTH = (window.innerWidth) * 0.999;
+	HEIGHT = (window.innerHeight) * 0.999;
 
 	scene = new Physijs.Scene();
 	scene.setGravity(new THREE.Vector3( 0, 0, -30 ));
@@ -72,10 +189,6 @@ function init()
 	renderer.setClearColor( 0x000000, 1.0 );
 	renderer.setSize( WIDTH, HEIGHT );
 	renderer.shadowMapEnabled = true;
-
-	// Controls landscape textures, castle brick textures,
-	// SoundFX, and more.
-	theme = Math.floor((Math.random() * 3));
 
 	// Generate ground, sky, and walls.
 	var terrain = GenerateTerrain( theme );
@@ -143,5 +256,11 @@ function init()
 	document.getElementById( 'shrapnelAmount' ).innerHTML = ammoType3Count;
 	document.getElementById( 'enemy-targets-count' ).innerHTML = enemyList.length;
 	document.getElementById( 'cam1' ).style.border = "1px solid #FFFFFF";
+
+	document.addEventListener( 'mousedown', onDocumentMouseDown, false );
+	document.addEventListener( 'touchstart', onDocumentTouchStart, false );
+	document.addEventListener( 'touchmove', onDocumentTouchMove, false );
+	document.addEventListener( 'touchend', onDocumentTouchEnd, false );
+
 	render();
 }

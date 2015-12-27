@@ -1,19 +1,101 @@
+a,
+a:after,
+a:before,
+a:hover
+{
+	color: #FFFFFF;
+	text-decoration: none;
+}
 body
 {
 	font-family: Arial;
 	margin: auto auto;
-	width: 97%;
+	width: 100%;
 }
 h4
 {
 	display: block;
 	font-size: 15px;
 }
+[data-tooltip]
+{
+  position: relative;
+  cursor: pointer;
+}
+[data-tooltip]:before,
+[data-tooltip]:after
+{
+	bottom: 100%;
+	filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+	left: 50%;
+	margin-left: -80px;
+	opacity: 0;
+	pointer-events: none;
+	position: absolute;
+	transform: translate3d(0, 0, 0);
+	visibility: hidden;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	-webkit-transition: 
+	  opacity 0.2s ease-in-out,
+	    visibility 0.2s ease-in-out,
+	    -webkit-transform 0.2s cubic-bezier(0.71, 1.7, 0.77, 1.24);
+	-moz-transition:    
+	    opacity 0.2s ease-in-out,
+	    visibility 0.2s ease-in-out,
+	    -moz-transform 0.2s cubic-bezier(0.71, 1.7, 0.77, 1.24);
+	transition:         
+	    opacity 0.2s ease-in-out,
+	    visibility 0.2s ease-in-out,
+	    transform 0.2s cubic-bezier(0.71, 1.7, 0.77, 1.24);
+	-webkit-transform: translate3d(0, 0, 0);
+	-moz-transform:    translate3d(0, 0, 0);
+}
+[data-tooltip]:after
+{
+	background-color: #000;
+	background-color: hsla(0, 0%, 20%, 0.9);
+	color: #fff;
+	content: attr(data-tooltip);
+	font-size: 14px;
+	line-height: 1.2;
+	margin-left: -80px;
+	padding: 8px;
+	width: 160px;
+	z-index: 1000;
+}
+[data-tooltip]:before
+{
+	background: transparent;
+	border: 6px solid transparent;
+	border-top-color: #000;
+	border-top-color: hsla(0, 0%, 20%, 0.9);
+	content: "";
+	margin-left: -6px;
+	margin-bottom: -12px;
+	z-index: 1001;
+}
+[data-tooltip]:hover:before,
+[data-tooltip]:hover:after,
+[data-tooltip]:focus:before,
+[data-tooltip]:focus:after
+{
+	-webkit-transform: translateY(-12px);
+	-moz-transform:    translateY(-12px);
+	transform:         translateY(-12px);
+	visibility: visible;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+	opacity: 1.5;
+}
+#canvas
+{
+	display: none;
+}
 #container
 {
 	margin: auto auto;
 	position: relative;
-	width: 97%;
+	width: 100%;
 }
 #fire-bar
 {
@@ -35,6 +117,7 @@ h4
 {
 	background-color: #000000;
 	color: #FFFFFF;
+	display: none;
 	height: 100px;
 	opacity: 0.7;
 	position: absolute;
@@ -44,24 +127,24 @@ h4
 }
 #HUD-left
 {
-	left: 3%;
-	top: 3%;
+	left: 10px;
+	top: 10px;
 }
 #HUD-right
 {
-	right: 3%;
-	top: 3%;
+	right: 10px;
+	top: 10px;
 }
 #HUD-timer
 {
-	bottom: 3%;
+	bottom: 10px;
 	left: 45%;
 }
 #HUD-legend
 {
-	bottom: 3%;
+	bottom: 10px;
 	height: auto;
-	left: 3%;
+	left: 10px;
 	width: 10%;
 }
 #legend-container,
@@ -81,6 +164,47 @@ h4
 	margin-bottom: 5%;
 	padding-left: 10%;
 	text-align: left;
+}
+#button-box
+{
+	margin: 0px auto;
+	min-height: 20px;
+	width: 50%;
+}
+#button-box button
+{
+	background-color: #99FF99;
+	color: #AAAA00;
+	font-weight: bold;
+	width: 20%;
+}
+#cam1,
+#cam2,
+#cam3,
+#cam4,
+#cam5
+{
+	cursor: pointer;
+}
+#loadup-modal
+{
+	background-color: #2196F3;
+	display: block;
+	margin: 0px auto;
+	min-height: 420px;
+	text-align: center;
+	width: 80%;
+	z-index: 2000;
+}
+#loadup-modal h1
+{
+	background-color: #212326;
+	color: #FFFFFF;
+	padding: 20px 0px;
+}
+#loadup-modal p
+{
+	margin: 20px 0px;
 }
 #explosive,
 #shrapnel,
@@ -133,4 +257,66 @@ h4
 	padding-top: 10%;
 	text-align: center;
 	width: 48%;
+}
+@media (max-width: 767px)
+{
+	#button-box button
+	{
+		font-size: 10px;
+		width: 30%;
+	}
+	h4,
+	#HUD-legend,
+	#HUD-left,
+	#HUD-left p,
+	#HUD-right,
+	#HUD-timer
+	{
+		font-size: 12px;
+	}
+	#HUD-legend
+	{
+		width: 20%;
+	}
+	#HUD-left p
+	{
+    	padding-top: 175%;
+	}
+	#HUD-right h4
+	{
+		font-size: 10px;
+	}
+	.time
+	{
+		font-size: 15px;
+	}
+}
+@media (max-width: 480px)
+{
+	#button-box button
+	{
+		color: #222222;
+		font-size: 8px;
+		padding: 0px;
+	}
+	h4,
+	#HUD-legend,
+	#HUD-left,
+	#HUD-left p,
+	#HUD-right,
+	#HUD-timer,
+	#legend-container p
+	{
+		font-size: 8px;
+	}
+	#HUD-left p
+	{
+		margin-left: 20%;
+		padding-top: 300%;
+		width: 20%;
+	}
+	#HUD-right h4
+	{
+		font-size: 8px;
+	}
 }

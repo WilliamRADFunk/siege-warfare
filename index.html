@@ -39,19 +39,37 @@
 	</script>
 </head>
 <body>
+	<div id="loadup-modal">
+		<h1>Welcome to Siege Warfare!</h1>
+		<p>The red menace must be stopped before they can hatch their dastardly plot.</p>
+		<p>Use number keys 1, 2, 3, 4, and 5 to switch between views.</p>
+		<p>Use keys C, V, and K to switch between ammo types Slug, Explosive, and Shrapnel.</p>
+		<p>Now choose which battle front on which to attack the enemy:</p>
+		<div id="button-box">
+			<button onclick="launchGame(0); return false;" style="float: left;">BEACH</button>
+			<button onclick="launchGame(1); return false;">JUNGLE</button>
+			<button onclick="launchGame(2); return false" style="float: right;">HILLS</button>
+		</div>
+	</div>
 	<div id="canvas">
 		<div id="HUD-left">
 			<div id="slug" class="ammo">
-				<h4>C-Key</h4>
-				<p id="slugAmount">20</p>
+				<a href="#" data-tooltip="Fires a single, heavy round" onclick="selectAmmoType(0); return false;">
+					<h4>C- Key</h4>
+					<p id="slugAmount">20</p>
+				</a>
 			</div>
 			<div id="explosive" class="ammo">
-				<h4>V-Key</h4>
-				<p id="explosiveAmount">10</p>
+				<a href="#" data-tooltip="Fires a round that explodes on impact" onclick="selectAmmoType(1); return false;">
+					<h4>V- Key</h4>
+					<p id="explosiveAmount">10</p>
+				</a>
 			</div>
 			<div id="shrapnel" class="ammo">
-				<h4>B-Key</h4>
-				<p id="shrapnelAmount">5</p>
+				<a href="#" data-tooltip="Fires 10 smaller, faster rounds" onclick="selectAmmoType(2); return false;">
+					<h4>B- Key</h4>
+					<p id="shrapnelAmount">5</p>
+				</a>
 			</div>
 		</div>
 		<div id="HUD-right">
@@ -82,15 +100,14 @@
 				<p>UP --- W, up</p>
 				<p>DOWN --- S, down</p>
 				<p>FIRE --- space</p>
-				<p id="cam1">VIEW #1 --- 1</p>
-				<p id="cam2">VIEW #2 --- 2</p>
-				<p id="cam3">VIEW #3 --- 3</p>
-				<p id="cam4">VIEW #4 --- 4</p>
-				<p id="cam5">VIEW #5 --- 5</p>
+				<p id="cam1" onclick="changeCamView(1)">VIEW #1 --- 1</p>
+				<p id="cam2" onclick="changeCamView(2)">VIEW #2 --- 2</p>
+				<p id="cam3" onclick="changeCamView(3)">VIEW #3 --- 3</p>
+				<p id="cam4" onclick="changeCamView(4)">VIEW #4 --- 4</p>
+				<p id="cam5" onclick="changeCamView(5)">VIEW #5 --- 5</p>
 			</div>
 		</div>
 	</div>
-	<script>window.onload = init;</script>
 </body>
 <!-- Cannon barrel textures provided by:
 		http://www.flickriver.com/photos/steffen-larsen/tags/textures/

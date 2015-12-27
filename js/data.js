@@ -33,6 +33,8 @@ var camera,
 var scene;
 var renderer;
 var keyboard;
+var mouseX,
+	mouseY;
 var orbControls;
 var theme = 0;
 var cannon;
@@ -48,6 +50,8 @@ var enemyList = [];
 var updateCounter = 0;
 var lastFired = 0;
 var timer = 36000;
+var timeStampStart = 0,
+	timeStampEnd = 0;
 
 var blockTexture;
 var brickTexture;

@@ -303,3 +303,61 @@ function fire()
 		document.getElementById( 'msg' ).innerHTML = "Reloading";
 	}
 }
+function clickNotFire(clickX, clickY)
+{
+	var slug = document.getElementById( 'slug' );
+	var explosive = document.getElementById( 'explosive' );
+	var shrapnel = document.getElementById( 'shrapnel' );
+	var HUDLegend = document.getElementById( 'HUD-legend' );
+	var legendContainer = document.getElementById( 'legend-container' );
+	var cam1 = document.getElementById( 'cam1' );
+	var cam2 = document.getElementById( 'cam2' );
+	var cam3 = document.getElementById( 'cam3' );
+	var cam4 = document.getElementById( 'cam4' );
+	var cam5 = document.getElementById( 'cam5' );
+
+	if(	clickX >= (slug.offsetLeft + 35) && clickX <= (slug.offsetLeft + slug.offsetWidth + 35) &&
+		clickY >= (slug.offsetTop + 10) && clickY <= (slug.offsetTop + slug.offsetHeight + 10) )
+	{
+		ammoSelection1();
+	}
+	else if(clickX >= (explosive.offsetLeft + 35) && clickX <= (explosive.offsetLeft + explosive.offsetWidth + 35) &&
+			clickY >= (explosive.offsetTop + 10) && clickY <= (explosive.offsetTop + explosive.offsetHeight + 10) )
+	{
+		ammoSelection2();
+	}
+	else if(clickX >= (shrapnel.offsetLeft + 35) && clickX <= (shrapnel.offsetLeft + shrapnel.offsetWidth + 35) &&
+			clickY >= (shrapnel.offsetTop + 10) && clickY <= (shrapnel.offsetTop + shrapnel.offsetHeight + 10) )
+	{
+		ammoSelection3();
+	}
+	else if(clickX >= (cam1.offsetLeft + 35) && clickX <= (cam1.offsetLeft + cam1.offsetWidth + 35) &&
+			clickY >= (cam1.offsetTop + HUDLegend.offsetTop + legendContainer.offsetTop) && clickY <= (cam1.offsetTop + HUDLegend.offsetTop + legendContainer.offsetTop + cam1.offsetHeight) )
+	{
+		cam1Startup();
+	}
+	else if(clickX >= (cam2.offsetLeft + 35) && clickX <= (cam2.offsetLeft + cam2.offsetWidth + 35) &&
+			clickY >= (cam2.offsetTop + HUDLegend.offsetTop + legendContainer.offsetTop) && clickY <= (cam2.offsetTop + HUDLegend.offsetTop + legendContainer.offsetTop + cam2.offsetHeight) )
+	{
+		cam2Startup();
+	}
+	else if(clickX >= (cam3.offsetLeft + 35) && clickX <= (cam3.offsetLeft + cam3.offsetWidth + 35) &&
+			clickY >= (cam3.offsetTop + HUDLegend.offsetTop + legendContainer.offsetTop) && clickY <= (cam3.offsetTop + HUDLegend.offsetTop + legendContainer.offsetTop + cam3.offsetHeight) )
+	{
+		cam3Startup();
+	}
+	else if(clickX >= (cam4.offsetLeft + 35) && clickX <= (cam4.offsetLeft + cam4.offsetWidth + 35) &&
+			clickY >= (cam4.offsetTop + HUDLegend.offsetTop + legendContainer.offsetTop) && clickY <= (cam4.offsetTop + HUDLegend.offsetTop + legendContainer.offsetTop + cam4.offsetHeight) )
+	{
+		cam4Startup();
+	}
+	else if(clickX >= (cam5.offsetLeft + 35) && clickX <= (cam5.offsetLeft + cam5.offsetWidth + 35) &&
+			clickY >= (cam5.offsetTop + HUDLegend.offsetTop + legendContainer.offsetTop) && clickY <= (cam5.offsetTop + HUDLegend.offsetTop + legendContainer.offsetTop + cam5.offsetHeight) )
+	{
+		cam5Startup();
+	}
+	else
+	{
+		timeStampStart = Date.now();
+	}
+}

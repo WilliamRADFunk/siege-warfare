@@ -62,6 +62,9 @@ function onDocumentMouseDown( event )
 	event.preventDefault();
 	document.addEventListener( 'mousemove', onDocumentMouseMove, false );
 	document.addEventListener( 'mouseup', onDocumentMouseUp, false );
+	var clickX = event.clientX;
+	var clickY = event.clientY;
+	clickNotFire(clickX, clickY);
 }
 function onDocumentMouseMove( event )
 {
@@ -92,37 +95,22 @@ function onDocumentMouseUp( event )
 {
 	document.removeEventListener( 'mousemove', onDocumentMouseMove, false );
 	document.removeEventListener( 'mouseup', onDocumentMouseUp, false );
+	timeStampEnd = Date.now();
+	if( (timeStampEnd - timeStampStart <= 200) && (timeStampStart != 0) )
+	{
+		fire();
+	}
+	timeStampStart = 0;
+	timeStampEnd = 0;
 }
 function onDocumentTouchStart( event )
 {
 	if ( event.touches.length === 1 )
 	{
 		event.preventDefault();
-
-		var slug = document.getElementById( 'slug' );
-		var explosive = document.getElementById( ' explosive' );
-		var slug = document.getElementById( 'shrapnel' );
-		var cam1 = document.getElementById( 'cam1' );
-		var cam2 = document.getElementById( 'cam2' );
-		var cam3 = document.getElementById( 'cam3' );
-		var cam4 = document.getElementById( 'cam4' );
-		var cam5 = document.getElementById( 'cam5' );
 		var clickX = event.touches[ 0 ].pageX;
 		var clickY = event.touches[ 0 ].pageY;
-		console.log("X: " + clickX + " /// Y: " + clickY);
-		console.log("slug.offsetLeft: " + slug.offsetLeft);
-		console.log("slug.offsetLeft + slug.offsetWidth = " + (slug.offsetLeft + slug.offsetWidth));
-		console.log("slug.offsetTop: " + slug.offsetTop);
-		console.log("slug.offsetTop + slug.offsetHeight = " + (slug.offsetTop + slug.offsetHeight));
-		if(	clickX >= slug.offsetLeft && clickX <= (slug.offsetLeft + slug.offsetWidth) &&
-			clickY >= slug.offsetTop && clickY <= (slug.offsetTop + slug.offsetHeight) )
-		{
-			console.log("Inside slug");
-		}
-		else
-		{
-			timeStampStart = Date.now();
-		}
+		clickNotFire(clickX, clickY);
 	}
 }
 function onDocumentTouchEnd( event )
@@ -132,7 +120,7 @@ function onDocumentTouchEnd( event )
 		event.preventDefault();
 	}
 	timeStampEnd = Date.now();
-	if(timeStampEnd - timeStampStart <= 200)
+	if( (timeStampEnd - timeStampStart <= 200) && (timeStampStart != 0) )
 	{
 		fire();
 	}

@@ -127,12 +127,12 @@ h4
 }
 #HUD-left
 {
-	left: 10px;
+	left: 35px;
 	top: 10px;
 }
 #HUD-right
 {
-	right: 10px;
+	right: 35px;
 	top: 10px;
 }
 #HUD-timer
@@ -144,7 +144,7 @@ h4
 {
 	bottom: 10px;
 	height: auto;
-	left: 10px;
+	left: 35px;
 	width: 10%;
 }
 #legend-container,
